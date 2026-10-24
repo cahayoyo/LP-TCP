@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site, workshop, steps, projects, needs, ipaSizes } from '../data/site';
+import { site, workshop, projects, needs, ipaSizes } from '../data/site';
 import { saveContact } from '../lib/contact';
 import heroPhoto from '../assets/ipa-1.png';
 
@@ -159,27 +159,27 @@ if (Astro.url.searchParams.has('gagal')) {
         </div>
 
         <div class="ws-grid">
-          <figure class="ws-photo" data-ws-carousel>
-            <ul class="ws-slides" data-ws-track>
+          <figure class="ws-photo" data-carousel>
+            <ul class="ws-slides" data-track>
               {workshop.slides.map((s) => (
                 <li>
                   <Image src={s.image} alt={s.alt} width={1200} format="webp" quality={82} loading="lazy" />
                 </li>
               ))}
             </ul>
-            <button class="ws-arrow ws-arrow--side ws-arrow--left" type="button" data-ws-prev aria-label="Foto sebelumnya">
+            <button class="ws-arrow ws-arrow--side ws-arrow--left" type="button" data-prev aria-label="Foto sebelumnya">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M19 12H5"></path>
                 <path d="m12 19-7-7 7-7"></path>
               </svg>
             </button>
-            <button class="ws-arrow ws-arrow--side ws-arrow--right" type="button" data-ws-next aria-label="Foto berikutnya">
+            <button class="ws-arrow ws-arrow--side ws-arrow--right" type="button" data-next aria-label="Foto berikutnya">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M5 12h14"></path>
                 <path d="m12 5 7 7-7 7"></path>
               </svg>
             </button>
-            <div class="ws-dots ws-dots--corner" data-ws-dots aria-label="Posisi foto"></div>
+            <div class="car-dots car-dots--corner" data-dots aria-label="Posisi foto"></div>
             <div class="ws-area">
               <span class="ws-area__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -231,7 +231,7 @@ if (Astro.url.searchParams.has('gagal')) {
           </div>
         </div>
 
-        <div class="ws-doc" data-ws-carousel>
+        <div class="ws-doc" data-carousel>
           <div class="ws-doc__head">
             <div>
               <span class="ws-doc__pill">Aktivitas</span>
@@ -240,13 +240,13 @@ if (Astro.url.searchParams.has('gagal')) {
             <div class="ws-doc__side">
               <p>{workshop.docDesc}</p>
               <div class="ws-arrows">
-                <button class="ws-arrow" type="button" data-ws-prev aria-label="Geser galeri ke kiri">
+                <button class="ws-arrow" type="button" data-prev aria-label="Geser galeri ke kiri">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M19 12H5"></path>
                     <path d="m12 19-7-7 7-7"></path>
                   </svg>
                 </button>
-                <button class="ws-arrow" type="button" data-ws-next aria-label="Geser galeri ke kanan">
+                <button class="ws-arrow" type="button" data-next aria-label="Geser galeri ke kanan">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h14"></path>
                     <path d="m12 5 7 7-7 7"></path>
@@ -256,7 +256,7 @@ if (Astro.url.searchParams.has('gagal')) {
             </div>
           </div>
 
-          <ul class="ws-track" data-ws-track>
+          <ul class="ws-track" data-track>
             {workshop.gallery.map((g) => (
               <li class="ws-item">
                 {typeof g.image === 'string' ? (
@@ -269,18 +269,18 @@ if (Astro.url.searchParams.has('gagal')) {
             ))}
           </ul>
 
-          <div class="ws-dots" data-ws-dots aria-label="Posisi galeri"></div>
+          <div class="car-dots" data-dots aria-label="Posisi galeri"></div>
         </div>
       </div>
     </section>
 
     <script>
       // Semua carousel workshop: panah dinamis, dots posisi, dan swipe mouse.
-      for (const root of document.querySelectorAll<HTMLElement>('[data-ws-carousel]')) {
-        const track = root.querySelector<HTMLElement>('[data-ws-track]');
-        const prev = root.querySelector<HTMLButtonElement>('[data-ws-prev]');
-        const next = root.querySelector<HTMLButtonElement>('[data-ws-next]');
-        const dotsBox = root.querySelector<HTMLElement>('[data-ws-dots]');
+      for (const root of document.querySelectorAll<HTMLElement>('[data-carousel]')) {
+        const track = root.querySelector<HTMLElement>('[data-track]');
+        const prev = root.querySelector<HTMLButtonElement>('[data-prev]');
+        const next = root.querySelector<HTMLButtonElement>('[data-next]');
+        const dotsBox = root.querySelector<HTMLElement>('[data-dots]');
 
         if (!track || !prev || !next) continue;
         const step = () => (track.firstElementChild?.clientWidth ?? 280) + 16;
@@ -311,7 +311,7 @@ if (Astro.url.searchParams.has('gagal')) {
             const d = document.createElement('button');
             d.type = 'button';
             d.className = 'ws-dot';
-            d.setAttribute('aria-label', `Ke posisi galeri ${i + 1}`);
+            d.setAttribute('aria-label', `Ke posisi ${i + 1}`);
             d.addEventListener('click', () =>
               track.scrollTo({ left: i * step(), behavior: 'smooth' }),
             );
@@ -362,44 +362,84 @@ if (Astro.url.searchParams.has('gagal')) {
       }
     </script>
 
-    <section class="section" id="proses">
-      <div class="wrap">
-        <span class="eyebrow">Alur kerja</span>
-        <h2>Empat tahap, satu hasil yang terukur</h2>
-        <p class="lead" style="margin-bottom: 2.5rem;">
-          Setiap tahap punya keluaran yang jelas, sehingga progres proyek mudah dipantau.
-        </p>
+    <section class="section section--surface" id="proyek">
+      <div class="wrap wrap--wide" data-carousel>
+        <div class="pr-head">
+          <div>
+            <span class="eyebrow">Portofolio Proyek</span>
+            <h2>Portofolio Proyek</h2>
+          </div>
+          <div class="pr-head__right">
+            <div class="ws-arrows">
+              <button class="ws-arrow" type="button" data-prev aria-label="Geser proyek ke kiri">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M19 12H5"></path>
+                  <path d="m12 19-7-7 7-7"></path>
+                </svg>
+              </button>
+              <button class="ws-arrow" type="button" data-next aria-label="Geser proyek ke kanan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+            <a class="pr-all" href="#">Lihat Semua Proyek
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
 
-        <ol class="steps">
-          {steps.map((s) => (
-            <li>
-              <h3>{s.title}</h3>
-              <p>{s.desc}</p>
+        <ul class="pr-track" data-track>
+          {projects.map((p) => (
+            <li class="pr-card">
+              {typeof p.image === 'string' ? (
+                <img src={p.image} alt={p.alt} width="640" height="480" loading="lazy" />
+              ) : (
+                <Image src={p.image} alt={p.alt} width={640} format="webp" quality={80} loading="lazy" />
+              )}
+              <span class="pr-card__tag">{p.tag}</span>
+              <div class="pr-card__info">
+                <h3>{p.title}</h3>
+                {(p.location || p.spec) && (
+                  <p class="pr-card__meta">
+                    {p.location && (
+                      <span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                          <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        {p.location}
+                      </span>
+                    )}
+                    {p.spec && (
+                      <span>
+                        {p.specIcon === 'pipe' ? (
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 13h18"></path>
+                            <path d="M3 11v4M6 11v4M18 11v4M21 11v4"></path>
+                            <path d="M12 13V9"></path>
+                            <circle cx="12" cy="7" r="1.6"></circle>
+                          </svg>
+                        ) : (
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 3c3.5 4.6 6 8 6 11a6 6 0 0 1-12 0c0-3 2.5-6.4 6-11Z"></path>
+                          </svg>
+                        )}
+                        {p.spec}
+                      </span>
+                    )}
+                  </p>
+                )}
+              </div>
             </li>
           ))}
-        </ol>
-      </div>
-    </section>
+        </ul>
 
-    <section class="section section--surface" id="proyek">
-      <div class="wrap">
-        <span class="eyebrow">Proyek</span>
-        <h2>Contoh lingkup pekerjaan</h2>
-        <p class="lead" style="margin-bottom: 2.5rem;">
-          Foto dan data proyek akan diperbarui pada bagian ini.
-        </p>
-
-        <div class="cards">
-          {projects.map((p) => (
-            <article class="project">
-              <img src={p.image} alt={p.alt} width="640" height="400" loading="lazy" />
-              <div class="project__body">
-                <h3>{p.title}</h3>
-                <p>{p.meta}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        <div class="car-dots" data-dots aria-label="Posisi proyek"></div>
       </div>
     </section>
 

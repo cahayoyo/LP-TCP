@@ -21,7 +21,7 @@ import { nav } from '../data/site';
     </nav>
 
     <div class="header-actions">
-      <a class="nav-cta" href="#">
+      <button class="nav-cta" type="button" data-brosur>
         <span class="nav-cta__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 3v5h5"></path>
@@ -30,7 +30,7 @@ import { nav } from '../data/site';
           </svg>
         </span>
         <span class="nav-cta__label">Brosur TCP</span>
-      </a>
+      </button>
 
       <details class="mobile-menu">
         <summary aria-label="Buka menu">
@@ -43,6 +43,96 @@ import { nav } from '../data/site';
     </div>
   </div>
 </header>
+
+<!-- Brosur TCP: dirender PDF.js ke canvas, PDF dilayani via /api/brosur agar lolos dari download manager -->
+<dialog class="pdf-dialog" data-brosur-dialog aria-label="Brosur PT. Tri Cipta Patriot">
+  <div class="pdf-dialog__bar">
+    <span>Brosur TCP</span>
+    <button class="pdf-dialog__close" type="button" data-brosur-close aria-label="Tutup brosur">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
+  </div>
+  <div class="pdf-dialog__pages" data-brosur-pages>
+    <p class="pdf-dialog__status" data-brosur-status hidden>Memuat brosur…</p>
+  </div>
+</dialog>
+
+<script>
+  import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+
+  const dialog = document.querySelector<HTMLDialogElement>('[data-brosur-dialog]');
+  const openBtn = document.querySelector<HTMLButtonElement>('[data-brosur]');
+  const pages = document.querySelector<HTMLElement>('[data-brosur-pages]');
+  const status = document.querySelector<HTMLElement>('[data-brosur-status]');
+
+  if (dialog && openBtn && pages && status) {
+    // PDF.js di-bundle lokal sebagai chunk terpisah, diload saat tombol pertama ditekan.
+    let pdfjs: Promise<any> | null = null;
+    // job naik tiap buka/tutup: loop render versi lama langsung berhenti.
+    let job = 0;
+
+    const loadPdfjs = () =>
+      (pdfjs ??= import('pdfjs-dist').then((m) => {
+        m.GlobalWorkerOptions.workerSrc = workerUrl;
+        return m;
+      }));
+
+    openBtn.addEventListener('click', async () => {
+      dialog.showModal();
+      const token = ++job;
+      pages.replaceChildren(status);
+      status.hidden = false;
+      status.textContent = 'Memuat brosur…';
+      try {
+        const lib = await loadPdfjs();
+        // PDF di-XOR di server (lolos dari IDM), decode balik lalu diteruskan sebagai data mentah.
+        const res = await fetch('/api/brosur');
+        if (!res.ok) throw new Error('brosur request failed');
+        const enc = new Uint8Array(await res.arrayBuffer());
+        const data = new Uint8Array(enc.length);
+        for (let i = 0; i < enc.length; i++) data[i] = enc[i] ^ 0x5a;
+        const doc = await lib.getDocument({ data }).promise;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        for (let i = 1; i <= doc.numPages; i++) {
+          if (token !== job) return;
+          const page = await doc.getPage(i);
+          if (token !== job) return;
+          const base = page.getViewport({ scale: 1 });
+          const scale = ((pages.clientWidth - 24) / base.width) * dpr;
+          const vp = page.getViewport({ scale });
+          const canvas = document.createElement('canvas');
+          canvas.width = vp.width;
+          canvas.height = vp.height;
+          canvas.className = 'pdf-dialog__page';
+          pages.append(canvas);
+          await page.render({ canvasContext: canvas.getContext('2d')!, viewport: vp }).promise;
+          if (i === 1) status.hidden = true;
+        }
+      } catch {
+        if (token === job) {
+          status.hidden = false;
+          status.textContent = 'Gagal memuat brosur. Periksa koneksi internet Anda.';
+        }
+      }
+    });
+
+    const close = () => {
+      job++;
+      pages.replaceChildren(status);
+      status.hidden = true;
+    };
+
+    dialog.querySelector('[data-brosur-close]')?.addEventListener('click', () => dialog.close());
+    // Klik area gelap di luar dialog juga menutup.
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', close);
+  }
+</script>
 
 <script>
   // Garis bawah mengikuti section yang sedang terlihat.

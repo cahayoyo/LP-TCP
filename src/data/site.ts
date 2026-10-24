@@ -75,44 +75,88 @@ export const workshop = {
   ],
 };
 
-export const steps = [
-  {
-    title: 'Kajian & desain',
-    desc: 'Analisis sumber air, kebutuhan kapasitas, dan kualitas air keluaran. Hasilnya berupa desain proses dan gambar kerja.',
-  },
-  {
-    title: 'Fabrikasi & instalasi',
-    desc: 'Pembuatan unit, pemipaan, kelistrikan, dan pemasangan di lokasi sesuai jadwal proyek.',
-  },
-  {
-    title: 'Commissioning',
-    desc: 'Uji coba, penyetelan dosis dan parameter operasi sampai kualitas air sesuai target.',
-  },
-  {
-    title: 'Operasi & perawatan',
-    desc: 'Pendampingan operasi, pelatihan operator, dan perawatan berkala untuk menjaga kinerja instalasi.',
-  },
-];
-
-// TODO: ganti judul, deskripsi, dan foto proyek dengan data asli.
+// TODO: foto, lokasi, dan spesifikasi proyek akan dilengkapi; judul sudah sesuai daftar proyek.
 export const projects = [
   {
-    title: 'Instalasi WTP Industri',
-    meta: 'Air bersih · Kapasitas sesuai kebutuhan',
+    tag: 'IPA Baja',
+    title: 'Pembangunan IPA Baja SPAM Bilah Hilir',
+    location: '',
+    spec: '',
     image: '/img/proyek-1.svg',
-    alt: 'Ilustrasi instalasi water treatment plant',
+    alt: 'Pembangunan IPA Baja SPAM Bilah Hilir',
   },
   {
-    title: 'Sistem Pengolahan Air Limbah',
-    meta: 'Domestik / industri',
+    tag: 'IPA Baja',
+    title: 'Rehabilitasi IPA Baja SPAM IKK Bumiarum',
+    location: '',
+    spec: '',
     image: '/img/proyek-2.svg',
-    alt: 'Ilustrasi instalasi pengolahan air limbah',
+    alt: 'Rehabilitasi IPA Baja SPAM IKK Bumiarum',
   },
   {
-    title: 'Reverse Osmosis Air Proses',
-    meta: 'Air proses · Boiler feed',
+    tag: 'IPA Baja',
+    title: 'Peningkatan IPA Baja SPAM IKK Sungai Bengkal',
+    location: '',
+    spec: '',
     image: '/img/proyek-3.svg',
-    alt: 'Ilustrasi unit reverse osmosis',
+    alt: 'Peningkatan IPA Baja SPAM IKK Sungai Bengkal',
+  },
+  {
+    tag: 'IPAL',
+    title: 'Rehabilitasi IPAL RSUD AL Ihsan',
+    location: '',
+    spec: '',
+    image: '/img/proyek-1.svg',
+    alt: 'Rehabilitasi IPAL RSUD AL Ihsan',
+  },
+  {
+    tag: 'IPA Baja',
+    title: 'Pembangunan IPA Baja SPAM IKK Renah Mendaluh',
+    location: '',
+    spec: '',
+    image: '/img/proyek-2.svg',
+    alt: 'Pembangunan IPA Baja SPAM IKK Renah Mendaluh',
+  },
+  {
+    tag: 'IPA Baja',
+    title: 'Pembangunan IPA Baja KSPN Tanjung Kelayang',
+    location: '',
+    spec: '',
+    image: '/img/proyek-3.svg',
+    alt: 'Pembangunan IPA Baja KSPN Tanjung Kelayang',
+  },
+  {
+    tag: 'IPA Baja',
+    title: 'Pembangunan IPA Baja SPAM IKK Tondano',
+    location: '',
+    spec: '',
+    image: '/img/proyek-1.svg',
+    alt: 'Pembangunan IPA Baja SPAM IKK Tondano',
+  },
+  {
+    tag: 'IPA Baja',
+    title: 'Peningkatan IPA Baja Toboali',
+    location: '',
+    spec: '',
+    image: '/img/proyek-2.svg',
+    alt: 'Peningkatan IPA Baja Toboali',
+  },
+  {
+    tag: 'IPA Baja',
+    title: 'Pembangunan IPA Baja SPAM IKK Selat Nasik',
+    location: '',
+    spec: '',
+    image: '/img/proyek-3.svg',
+    alt: 'Pembangunan IPA Baja SPAM IKK Selat Nasik',
+  },
+  {
+    tag: 'Pipa Distribusi',
+    specIcon: 'pipe',
+    title: 'Pembangunan Pipa Distribusi IPA Sukmajaya',
+    location: '',
+    spec: '',
+    image: '/img/proyek-1.svg',
+    alt: 'Pembangunan Pipa Distribusi IPA Sukmajaya',
   },
 ];
 
