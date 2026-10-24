@@ -205,19 +205,19 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--brand);
+  background: #1667e0;
   color: #fff;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
   padding: 0.4rem 0.7rem 0.4rem 0.4rem;
-  border-radius: 999px;
+  border-radius: 10px;
   white-space: nowrap;
   transition: background 0.15s ease;
 }
 
 .nav-cta:hover {
-  background: var(--brand-dark);
+  background: #1153b8;
 }
 
 .nav-cta__icon {
@@ -231,11 +231,6 @@ img {
 }
 
 .nav-cta__icon svg {
-  width: 15px;
-  height: 15px;
-}
-
-.nav-cta__arrow {
   width: 15px;
   height: 15px;
 }
@@ -344,17 +339,6 @@ img {
   }
 }
 
-@media (max-width: 480px) {
-  .nav-cta__label {
-    display: none;
-  }
-
-  .nav-cta {
-    padding: 0.35rem;
-  }
-}
-
-
 /* Hero */
 .hero {
   position: relative;
@@ -433,7 +417,7 @@ img {
 }
 
 .hero .eyebrow {
-  color: #8fe3f2;
+  color: #fff;
 }
 
 .hero__lead {
@@ -449,13 +433,26 @@ img {
   gap: 0.75rem;
 }
 
-.hero .btn--primary {
-  background: #0f6fc4;
+.hero .btn--primary,
+.hero .btn--ghost {
+  border-color: transparent;
   color: #fff;
 }
 
+.hero .btn--primary {
+  background: #a82240;
+}
+
+.hero .btn--ghost {
+  background: #1667e0;
+}
+
 .hero .btn--primary:hover {
-  background: #0b5aa1;
+  background: #8d1c35;
+}
+
+.hero .btn--ghost:hover {
+  background: #1153b8;
 }
 
 .btn__icon {
@@ -512,12 +509,8 @@ img {
   display: none;
 }
 
-.btn--ghost .btn__icon {
-  display: none;
-}
-
 /* Mobile: foto utuh di atas sebagai banner, konten mengalir di bawahnya,
-   statistik jadi kartu 3 kolom, tombol pill */
+   statistik jadi kartu 3 kolom */
 @media (max-width: 991px) {
   .hero {
     background: linear-gradient(to bottom, #031a30 0%, #062f52 45%, #084273 100%);
@@ -549,15 +542,6 @@ img {
     flex-direction: column;
     align-items: stretch;
     max-width: 420px;
-  }
-
-  .hero .btn {
-    border-radius: 999px;
-    justify-content: center;
-  }
-
-  .btn--ghost .btn__icon {
-    display: block;
   }
 
   .stat-sub--mobile,
