@@ -516,10 +516,33 @@ img {
   display: none;
 }
 
-/* Mobile: statistik jadi kartu 3 kolom, tombol pill, judul dapat aksen biru */
+/* Mobile: foto utuh di atas sebagai banner, konten mengalir di bawahnya,
+   statistik jadi kartu 3 kolom, tombol pill */
 @media (max-width: 991px) {
-  .hero .hl {
-    color: #7cc4ee;
+  .hero {
+    background: linear-gradient(to bottom, #031a30 0%, #062f52 45%, #084273 100%);
+  }
+
+  .hero__bg {
+    position: static;
+    width: 100%;
+    height: auto;
+    -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  }
+
+  .hero__shade {
+    background: linear-gradient(
+      to bottom,
+      rgba(4, 30, 54, 0.2) 0%,
+      rgba(4, 30, 54, 0.9) 30%,
+      rgba(5, 40, 70, 0.97) 100%
+    );
+  }
+
+  .hero__inner {
+    min-height: 0;
+    padding-top: 0.75rem;
   }
 
   .hero__actions {
