@@ -1,7 +1,13 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import node from '@astrojs/node';
 
 export default defineConfig({
+  // Secret dibaca saat runtime (process.env di production), jadi build Docker tidak butuh DATABASE_URL.
+  env: {
+    schema: {
+      DATABASE_URL: envField.string({ context: 'server', access: 'secret' }),
+    },
+  },
   // Server mode hanya supaya form kontak bisa POST. Halaman tetap di-render sekali
   // per request, tidak ada CMS/database untuk konten.
   output: 'server',

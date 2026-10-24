@@ -1,12 +1,11 @@
 import postgres from 'postgres';
+import { DATABASE_URL } from 'astro:env/server';
 import { needs } from '../data/site';
 
 let sql: postgres.Sql | undefined;
 
 function db() {
-  const url = process.env.DATABASE_URL;
-  if (!url) throw new Error('DATABASE_URL belum di-set');
-  return (sql ??= postgres(url, { max: 5 }));
+  return (sql ??= postgres(DATABASE_URL, { max: 5 }));
 }
 
 let schemaReady: Promise<unknown> | undefined;
