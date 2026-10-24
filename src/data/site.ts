@@ -4,6 +4,19 @@ import ipa20 from '../assets/ipa-20l.png';
 import ipa30 from '../assets/ipa-30l.png';
 import ipa40 from '../assets/ipa-40l.png';
 import ipa50 from '../assets/ipa-50l.png';
+import workshop1 from '../assets/workshop-1.png';
+import workshop2 from '../assets/workshop-2.png';
+import workshop3 from '../assets/workshop-3.png';
+import workshop4 from '../assets/workshop-4.png';
+import sandblasting from '../assets/sandblasting1.png';
+import unloading from '../assets/unloading.png';
+import pengecatan from '../assets/pengecatan.png';
+import pengelasan from '../assets/pengelasan.png';
+import accesories from '../assets/accesories.png';
+import tubeSettler from '../assets/tube-settler.png';
+import cuttingPlan from '../assets/cutting-plan.png';
+import cuttingCnc from '../assets/cutting-cnc.png';
+import packing from '../assets/packing.png';
 
 export const site = {
   name: 'PT. Tri Cipta Patriot',
@@ -21,33 +34,46 @@ export const site = {
 export const nav = [
   { href: '#beranda', label: 'Beranda' },
   { href: '#ipa', label: 'IPA Struktur Baja' },
-  { href: '#layanan', label: 'Layanan' },
+  { href: '#workshop', label: 'Workshop' },
   { href: '#proyek', label: 'Proyek' },
   { href: '#kontak', label: 'Kontak' },
 ];
 
-export const services = [
-  {
-    title: 'Water Treatment Plant',
-    desc: 'Instalasi pengolahan air bersih dari sumber permukaan maupun air tanah, sesuai baku mutu yang berlaku.',
-    points: ['Koagulasi–flokulasi–filtrasi', 'Desinfeksi', 'Kapasitas sesuai kebutuhan'],
-  },
-  {
-    title: 'Wastewater Treatment',
-    desc: 'Pengolahan air limbah domestik dan industri agar aman dibuang atau digunakan kembali.',
-    points: ['STP domestik', 'WWTP industri', 'Penyesuaian baku mutu'],
-  },
-  {
-    title: 'Reverse Osmosis',
-    desc: 'Sistem membrane untuk air proses, boiler feed, dan kebutuhan air dengan kemurnian tinggi.',
-    points: ['RO & demineralisasi', 'Pra-perlakuan', 'Monitoring kualitas air'],
-  },
-  {
-    title: 'Operasi & Pemeliharaan',
-    desc: 'Dukungan teknis setelah instalasi beroperasi, termasuk pelatihan operator dan penyediaan spare part.',
-    points: ['Commissioning', 'Pelatihan operator', 'Perawatan berkala'],
-  },
-];
+// Semua foto galeri workshop sudah foto asli.
+export const workshop = {
+  location: 'Purwakarta',
+  locationLabel: 'Lokasi Workshop',
+  eyebrow: 'Darangdan, Purwakarta, Jawa Barat',
+  heading: 'PT. Tri Cipta Patriot Workshop Instalasi Pengolahan Air Struktur Baja',
+  desc: 'Workshop kami dilengkapi dengan fasilitas produksi modern untuk mendukung pembuatan instalasi pengolahan air berbasis struktur baja dengan kualitas tinggi, presisi, dan sesuai standar.',
+  sub: 'Didukung Fasilitas Workshop Lengkap dan Tenaga Ahli Berpengalaman',
+  slides: [
+    { image: workshop1, alt: 'Area workshop PT. Tri Cipta Patriot' },
+    { image: workshop2, alt: 'Area workshop PT. Tri Cipta Patriot — 2' },
+    { image: workshop3, alt: 'Area workshop PT. Tri Cipta Patriot — 3' },
+    { image: workshop4, alt: 'Area workshop PT. Tri Cipta Patriot — 4' },
+  ],
+  features: [
+    { icon: 'gear', label: 'Fasilitas Produksi Lengkap' },
+    { icon: 'users', label: 'Tenaga Ahli Berpengalaman' },
+    { icon: 'shield', label: 'Standar Kualitas Terjamin' },
+    { icon: 'clock', label: 'Dukungan Proyek Tepat Waktu' },
+  ],
+  docTitle: 'Workshop PT. Tri Cipta Patriot',
+  docDesc:
+    'Proses produksi dilakukan secara profesional dengan dukungan peralatan modern dan tim yang berpengalaman.',
+  gallery: [
+    { caption: 'Unloading Material', image: unloading, alt: 'Unloading material di workshop' },
+    { caption: 'Cutting Plate', image: cuttingPlan, alt: 'Proses cutting plate di workshop' },
+    { caption: 'Pengelasan', image: pengelasan, alt: 'Pekerjaan pengelasan di workshop' },
+    { caption: 'Sandblasting', image: sandblasting, alt: 'Proses sandblasting di workshop' },
+    { caption: 'Cutting CNC', image: cuttingCnc, alt: 'Proses cutting CNC di workshop' },
+    { caption: 'Pengecatan Primer', image: pengecatan, alt: 'Proses pengecatan primer di workshop' },
+    { caption: 'Accessories dan Perpipaan', image: accesories, alt: 'Pemasangan accessories dan perpipaan di workshop' },
+    { caption: 'Pembuatan Tube Settler', image: tubeSettler, alt: 'Pembuatan tube settler di workshop' },
+    { caption: 'Packing', image: packing, alt: 'Packing komponen siap kirim di workshop' },
+  ],
+};
 
 export const steps = [
   {

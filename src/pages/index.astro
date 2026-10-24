@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site, services, steps, projects, needs, ipaSizes } from '../data/site';
+import { site, workshop, steps, projects, needs, ipaSizes } from '../data/site';
 import { saveContact } from '../lib/contact';
 import heroPhoto from '../assets/ipa-1.png';
 
@@ -62,7 +62,7 @@ if (Astro.url.searchParams.has('gagal')) {
             </svg>
             E-Katalog V6
           </a>
-          <a class="btn btn--ghost" href="#">
+          <a class="btn btn--ghost" href="#workshop">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="btn__icon">
               <path d="M3 20h18"></path>
               <path d="M5 20V7.5L11 5l6 2.5V20"></path>
@@ -151,27 +151,216 @@ if (Astro.url.searchParams.has('gagal')) {
       </div>
     </section>
 
-    <section class="section section--surface" id="layanan">
-      <div class="wrap">
-        <span class="eyebrow">Layanan</span>
-        <h2>Yang kami kerjakan</h2>
-        <p class="lead" style="margin-bottom: 2.5rem;">
-          Lingkup pekerjaan disesuaikan dengan kondisi lokasi dan kebutuhan kapasitas.
-        </p>
+    <section class="section section--surface" id="workshop">
+      <div class="wrap wrap--wide">
+        <div class="ipa-head">
+          <h2>Workshop TCP</h2>
+          <p class="ipa-sub">{workshop.sub}</p>
+        </div>
 
-        <div class="cards">
-          {services.map((s) => (
-            <article class="card">
-              <h3>{s.title}</h3>
-              <p>{s.desc}</p>
-              <ul class="checklist">
-                {s.points.map((p) => <li>{p}</li>)}
-              </ul>
-            </article>
-          ))}
+        <div class="ws-grid">
+          <figure class="ws-photo" data-ws-carousel>
+            <ul class="ws-slides" data-ws-track>
+              {workshop.slides.map((s) => (
+                <li>
+                  <Image src={s.image} alt={s.alt} width={1200} format="webp" quality={82} loading="lazy" />
+                </li>
+              ))}
+            </ul>
+            <button class="ws-arrow ws-arrow--side ws-arrow--left" type="button" data-ws-prev aria-label="Foto sebelumnya">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 12H5"></path>
+                <path d="m12 19-7-7 7-7"></path>
+              </svg>
+            </button>
+            <button class="ws-arrow ws-arrow--side ws-arrow--right" type="button" data-ws-next aria-label="Foto berikutnya">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </button>
+            <div class="ws-dots ws-dots--corner" data-ws-dots aria-label="Posisi foto"></div>
+            <div class="ws-area">
+              <span class="ws-area__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </span>
+              <span class="ws-area__text">
+                <small>{workshop.locationLabel}</small>
+                <strong>{workshop.location}</strong>
+              </span>
+            </div>
+          </figure>
+
+          <div class="ws-copy">
+            <p class="ws-eyebrow">{workshop.eyebrow}</p>
+            <h3>{workshop.heading}</h3>
+            <p>{workshop.desc}</p>
+
+            <ul class="ws-features">
+              {workshop.features.map((f) => (
+                <li class="ws-feature">
+                  {f.icon === 'gear' && (
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58ZM12 15.6a3.6 3.6 0 1 1 0-7.2 3.6 3.6 0 0 1 0 7.2Z"></path>
+                    </svg>
+                  )}
+                  {f.icon === 'users' && (
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M9 11.2a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8Zm7 .4a2.8 2.8 0 1 0 0-5.6 2.8 2.8 0 0 0 0 5.6ZM9 13c-3.1 0-6 1.6-6 3.9V19h12v-2.1c0-2.3-2.9-3.9-6-3.9Zm7 .5c-.5 0-1 .05-1.5.15 1.4.9 2 2.1 2 3.25V19h4.5v-1.8c0-1.9-2.5-3.7-5-3.7Z"></path>
+                    </svg>
+                  )}
+                  {f.icon === 'shield' && (
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="currentColor" d="M12 2 4 5.2v5.4c0 5 3.4 9.6 8 10.9 4.6-1.3 8-5.9 8-10.9V5.2L12 2Z"></path>
+                      <path fill="#fff" d="m10.4 15.1-3.2-3.2 1.4-1.4 1.8 1.8 4.4-4.4 1.4 1.4-5.8 5.8Z"></path>
+                    </svg>
+                  )}
+                  {f.icon === 'clock' && (
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z"></path>
+                      <path fill="#fff" d="M12.9 6.6h-1.8v6.2l5.1 3 .9-1.4-4.2-2.5V6.6Z"></path>
+                    </svg>
+                  )}
+                  <span>{f.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="ws-doc" data-ws-carousel>
+          <div class="ws-doc__head">
+            <div>
+              <span class="ws-doc__pill">Aktivitas</span>
+              <h3>{workshop.docTitle}</h3>
+            </div>
+            <div class="ws-doc__side">
+              <p>{workshop.docDesc}</p>
+              <div class="ws-arrows">
+                <button class="ws-arrow" type="button" data-ws-prev aria-label="Geser galeri ke kiri">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M19 12H5"></path>
+                    <path d="m12 19-7-7 7-7"></path>
+                  </svg>
+                </button>
+                <button class="ws-arrow" type="button" data-ws-next aria-label="Geser galeri ke kanan">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <ul class="ws-track" data-ws-track>
+            {workshop.gallery.map((g) => (
+              <li class="ws-item">
+                {typeof g.image === 'string' ? (
+                  <img src={g.image} alt={g.alt} width="480" height="360" loading="lazy" />
+                ) : (
+                  <Image src={g.image} alt={g.alt} width={480} format="webp" quality={80} loading="lazy" />
+                )}
+                <p>{g.caption}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div class="ws-dots" data-ws-dots aria-label="Posisi galeri"></div>
         </div>
       </div>
     </section>
+
+    <script>
+      // Semua carousel workshop: panah dinamis, dots posisi, dan swipe mouse.
+      for (const root of document.querySelectorAll<HTMLElement>('[data-ws-carousel]')) {
+        const track = root.querySelector<HTMLElement>('[data-ws-track]');
+        const prev = root.querySelector<HTMLButtonElement>('[data-ws-prev]');
+        const next = root.querySelector<HTMLButtonElement>('[data-ws-next]');
+        const dotsBox = root.querySelector<HTMLElement>('[data-ws-dots]');
+
+        if (!track || !prev || !next) continue;
+        const step = () => (track.firstElementChild?.clientWidth ?? 280) + 16;
+
+        // Panah redup saat carousel mentok kiri/kanan.
+        const updateArrows = () => {
+          const max = track.scrollWidth - track.clientWidth;
+          prev.disabled = track.scrollLeft <= 2;
+          next.disabled = track.scrollLeft >= max - 2;
+        };
+
+        prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+        next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+
+        // Dots: satu per posisi geser (total slide - jumlah slide terlihat + 1).
+        let dots: HTMLButtonElement[] = [];
+        const updateDots = () => {
+          const i = Math.min(dots.length - 1, Math.max(0, Math.round(track.scrollLeft / step())));
+          for (const [j, d] of dots.entries()) d.classList.toggle('is-active', j === i);
+        };
+        const build = () => {
+          if (!dotsBox) return;
+          dotsBox.innerHTML = '';
+          dots = [];
+          const visible = Math.max(1, Math.round((track.clientWidth + 16) / step()));
+          const count = Math.max(1, track.children.length - visible + 1);
+          for (let i = 0; i < count; i++) {
+            const d = document.createElement('button');
+            d.type = 'button';
+            d.className = 'ws-dot';
+            d.setAttribute('aria-label', `Ke posisi galeri ${i + 1}`);
+            d.addEventListener('click', () =>
+              track.scrollTo({ left: i * step(), behavior: 'smooth' }),
+            );
+            dotsBox.append(d);
+            dots.push(d);
+          }
+          updateDots();
+        };
+
+        let raf = 0;
+        track.addEventListener('scroll', () => {
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(() => {
+            updateDots();
+            updateArrows();
+          });
+        });
+        window.addEventListener('resize', () => {
+          build();
+          updateArrows();
+        });
+        build();
+        updateArrows();
+
+        // Swipe pakai mouse: drag di track (sentuh tetap pakai scroll native).
+        let dragging = false;
+        let dragX = 0;
+        let dragLeft = 0;
+
+        track.addEventListener('pointerdown', (e) => {
+          if (e.pointerType !== 'mouse' || e.button !== 0) return;
+          dragging = true;
+          dragX = e.clientX;
+          dragLeft = track.scrollLeft;
+          track.classList.add('is-drag');
+          track.setPointerCapture(e.pointerId);
+        });
+        track.addEventListener('pointermove', (e) => {
+          if (dragging) track.scrollLeft = dragLeft - (e.clientX - dragX);
+        });
+        const endDrag = () => {
+          dragging = false;
+          track.classList.remove('is-drag');
+        };
+        track.addEventListener('pointerup', endDrag);
+        track.addEventListener('pointercancel', endDrag);
+        track.addEventListener('dragstart', (e) => e.preventDefault());
+      }
+    </script>
 
     <section class="section" id="proses">
       <div class="wrap">
