@@ -666,26 +666,6 @@ img {
   gap: 1.1rem;
 }
 
-.pr-all {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--brand);
-  font-weight: 600;
-  font-size: 0.95rem;
-  white-space: nowrap;
-  text-decoration: none;
-}
-
-.pr-all svg {
-  width: 18px;
-  height: 18px;
-}
-
-.pr-all:hover {
-  text-decoration: underline;
-}
-
 .pr-track {
   list-style: none;
   margin: 0;

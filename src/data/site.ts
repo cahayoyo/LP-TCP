@@ -8,6 +8,17 @@ import workshop1 from '../assets/workshop-1.png';
 import workshop2 from '../assets/workshop-2.png';
 import workshop3 from '../assets/workshop-3.png';
 import workshop4 from '../assets/workshop-4.png';
+import bilahHilir from '../assets/ipa-bilahhilir.png';
+import sungaiBengkal from '../assets/ipa-sungaibengkal.png';
+import bumiarum from '../assets/ipa-bumiarum.jpeg';
+import tondano from '../assets/ipa-tondano.png';
+import renah from '../assets/ipa-renah.png';
+import kelayang from '../assets/ipa-kelayang.png';
+import toboali from '../assets/ipa-toboali.png';
+import selatNasik from '../assets/ipa-selatnasik.png';
+import cikarang from '../assets/ipa-cikarang.png';
+import sukmajaya from '../assets/pipa-sukmajaya.png';
+import terabek from '../assets/pipa-terabek.png';
 import sandblasting from '../assets/sandblasting1.png';
 import unloading from '../assets/unloading.png';
 import pengecatan from '../assets/pengecatan.png';
@@ -75,88 +86,156 @@ export const workshop = {
   ],
 };
 
-// TODO: foto, lokasi, dan spesifikasi proyek akan dilengkapi; judul sudah sesuai daftar proyek.
+// TODO: 8 foto proyek lainnya menyusul (placeholder svg) — 9 proyek sudah pakai foto asli.
 export const projects = [
   {
     tag: 'IPA Baja',
     title: 'Pembangunan IPA Baja SPAM Bilah Hilir',
-    location: '',
-    spec: '',
-    image: '/img/proyek-1.svg',
-    alt: 'Pembangunan IPA Baja SPAM Bilah Hilir',
+    location: 'Labuhan Batu, Sumatera Utara',
+    spec: '50 LPD',
+    specIcon: 'droplet',
+    image: bilahHilir,
+    alt: 'Pembangunan IPA Baja SPAM Bilah Hilir di Labuhan Batu, Sumatera Utara',
   },
   {
     tag: 'IPA Baja',
     title: 'Rehabilitasi IPA Baja SPAM IKK Bumiarum',
-    location: '',
-    spec: '',
-    image: '/img/proyek-2.svg',
-    alt: 'Rehabilitasi IPA Baja SPAM IKK Bumiarum',
+    location: 'Kabupaten Pringsewu, Lampung',
+    spec: '3×25 LPD',
+    specIcon: 'droplet',
+    image: bumiarum,
+    alt: 'Rehabilitasi IPA Baja SPAM IKK Bumiarum di Kabupaten Pringsewu, Lampung',
   },
   {
     tag: 'IPA Baja',
     title: 'Peningkatan IPA Baja SPAM IKK Sungai Bengkal',
-    location: '',
-    spec: '',
-    image: '/img/proyek-3.svg',
-    alt: 'Peningkatan IPA Baja SPAM IKK Sungai Bengkal',
-  },
-  {
-    tag: 'IPAL',
-    title: 'Rehabilitasi IPAL RSUD AL Ihsan',
-    location: '',
-    spec: '',
-    image: '/img/proyek-1.svg',
-    alt: 'Rehabilitasi IPAL RSUD AL Ihsan',
+    location: 'Kabupaten Tebo, Jambi',
+    spec: '30 LPD',
+    specIcon: 'droplet',
+    image: sungaiBengkal,
+    alt: 'Peningkatan IPA Baja SPAM IKK Sungai Bengkal di Kabupaten Tebo, Jambi',
   },
   {
     tag: 'IPA Baja',
     title: 'Pembangunan IPA Baja SPAM IKK Renah Mendaluh',
-    location: '',
-    spec: '',
-    image: '/img/proyek-2.svg',
-    alt: 'Pembangunan IPA Baja SPAM IKK Renah Mendaluh',
+    location: 'Tanjung Jabung Barat, Jambi',
+    spec: '10 LPD',
+    specIcon: 'droplet',
+    image: renah,
+    alt: 'Pembangunan IPA Baja SPAM IKK Renah Mendaluh di Tanjung Jabung Barat, Jambi',
   },
   {
     tag: 'IPA Baja',
     title: 'Pembangunan IPA Baja KSPN Tanjung Kelayang',
-    location: '',
-    spec: '',
-    image: '/img/proyek-3.svg',
-    alt: 'Pembangunan IPA Baja KSPN Tanjung Kelayang',
+    location: 'Tanjung Kelayang, Belitung',
+    spec: '20 LPD',
+    specIcon: 'droplet',
+    image: kelayang,
+    alt: 'Pembangunan IPA Baja KSPN Tanjung Kelayang di Belitung',
   },
   {
     tag: 'IPA Baja',
     title: 'Pembangunan IPA Baja SPAM IKK Tondano',
-    location: '',
-    spec: '',
-    image: '/img/proyek-1.svg',
-    alt: 'Pembangunan IPA Baja SPAM IKK Tondano',
+    location: 'Kabupaten Minahasa, Sulawesi Utara',
+    spec: '20 LPD',
+    specIcon: 'droplet',
+    image: tondano,
+    alt: 'Pembangunan IPA Baja SPAM IKK Tondano di Kabupaten Minahasa, Sulawesi Utara',
   },
   {
     tag: 'IPA Baja',
     title: 'Peningkatan IPA Baja Toboali',
-    location: '',
-    spec: '',
-    image: '/img/proyek-2.svg',
-    alt: 'Peningkatan IPA Baja Toboali',
+    location: 'Toboali Rindik, Bangka Belitung',
+    spec: '20 LPD',
+    specIcon: 'droplet',
+    image: toboali,
+    alt: 'Peningkatan IPA Baja Toboali di Bangka Belitung',
   },
   {
     tag: 'IPA Baja',
     title: 'Pembangunan IPA Baja SPAM IKK Selat Nasik',
-    location: '',
-    spec: '',
-    image: '/img/proyek-3.svg',
-    alt: 'Pembangunan IPA Baja SPAM IKK Selat Nasik',
+    location: 'Selat Nasik, Bangka Belitung',
+    spec: '10 LPD',
+    specIcon: 'droplet',
+    image: selatNasik,
+    alt: 'Pembangunan IPA Baja SPAM IKK Selat Nasik di Bangka Belitung',
   },
   {
     tag: 'Pipa Distribusi',
     specIcon: 'pipe',
     title: 'Pembangunan Pipa Distribusi IPA Sukmajaya',
-    location: '',
+    location: 'Sukmajaya, Jawa Barat',
+    spec: '',
+    image: sukmajaya,
+    alt: 'Pembangunan Pipa Distribusi IPA Sukmajaya di Sukmajaya, Jawa Barat',
+  },
+  {
+    tag: 'IPA Baja',
+    title: 'Pembangunan IPA Baja Perumahan Grand Cikarang City',
+    location: 'Cikarang, Jawa Barat',
+    spec: '50 LPD',
+    specIcon: 'droplet',
+    image: cikarang,
+    alt: 'Pembangunan IPA Baja Perumahan Grand Cikarang City di Cikarang, Jawa Barat',
+  },
+  {
+    tag: 'Pipa Distribusi',
+    specIcon: 'pipe',
+    title: 'Pengadaan dan Pemasangan Pipa Transmisi Kolong Terabek',
+    location: 'Bangka Belitung',
+    spec: '',
+    image: terabek,
+    alt: 'Pengadaan dan Pemasangan Pipa Transmisi Kolong Terabek di Bangka Belitung',
+  },
+  {
+    tag: 'Drainase',
+    title: 'Pembangunan Drainase Primer Kota Depok',
+    location: 'Depok, Jawa Barat',
+    spec: '',
+    image: '/img/proyek-3.svg',
+    alt: 'Pembangunan Drainase Primer Kota Depok',
+  },
+  {
+    tag: 'Pompa Booster',
+    title: 'Pembangunan Booster Pump Sukatani',
+    location: 'Sukatani, Jawa Barat',
+    spec: '500 m³',
+    specIcon: 'droplet',
+    image: '/img/proyek-1.svg',
+    alt: 'Pembangunan Booster Pump Sukatani',
+  },
+  {
+    tag: 'Filter Air',
+    title: 'Pembangunan Filter Mata Air Ciburial',
+    location: 'Ciomas, Jawa Barat',
+    spec: '',
+    image: '/img/proyek-2.svg',
+    alt: 'Pembangunan Filter Mata Air Ciburial',
+  },
+  {
+    tag: 'Water Tank',
+    title: 'Pembangunan Water Tank Sawangan',
+    location: 'Sawangan, Jawa Barat',
+    spec: '',
+    image: '/img/proyek-3.svg',
+    alt: 'Pembangunan Water Tank Sawangan',
+  },
+  {
+    tag: 'Pipa Distribusi',
+    specIcon: 'pipe',
+    title: 'Pembangunan Jembatan Pipa GI Dia. 300 mm Grand Depok City',
+    location: 'Depok, Jawa Barat',
     spec: '',
     image: '/img/proyek-1.svg',
-    alt: 'Pembangunan Pipa Distribusi IPA Sukmajaya',
+    alt: 'Pembangunan Jembatan Pipa GI Dia. 300 mm Grand Depok City',
+  },
+  {
+    tag: 'Drainase',
+    title: 'Penataan Drainase Inlet Kali Cipinang RW.13 Kel. Mekarsari',
+    location: 'Mekarsari, Jawa Barat',
+    spec: '',
+    image: '/img/proyek-2.svg',
+    alt: 'Penataan Drainase Inlet Kali Cipinang RW.13 Kel. Mekarsari',
   },
 ];
 
