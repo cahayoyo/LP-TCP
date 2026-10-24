@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site, services, steps, projects, needs } from '../data/site';
+import { site, services, steps, projects, needs, ipaSizes } from '../data/site';
 import { saveContact } from '../lib/contact';
 import heroPhoto from '../assets/ipa-1.png';
 
@@ -120,37 +120,34 @@ if (Astro.url.searchParams.has('gagal')) {
       </svg>
     </section>
 
-    <section class="section" id="tentang">
-      <div class="wrap split">
-        <div>
-          <span class="eyebrow">Tentang kami</span>
-          <h2>Fokus pada satu hal: air yang memenuhi standar.</h2>
-          <p class="lead">
-            Instalasi pengolahan air bukan sekadar susunan tangki dan pompa. Kualitas hasil
-            akhir bergantung pada desain proses yang tepat, pemasangan yang rapi, dan
-            pengaturan operasi yang konsisten.
-          </p>
-          <p>
-            Kami bekerja dari analisis sumber air di awal, menyusun desain proses, membangun
-            unit di lokasi, lalu mendampingi operasi sampai kualitas air sesuai target yang
-            disepakati.
-          </p>
+    <section class="section" id="ipa">
+      <div class="wrap wrap--wide">
+        <div class="ipa-head">
+          <h2>IPA Struktur Baja</h2>
+          <p class="ipa-sub">Pilihan Kapasitas Instalasi Pengolahan Air</p>
         </div>
 
-        <ul class="stat-list">
-          <li>
-            <strong>Satu titik tanggung jawab</strong>
-            <span>Desain, konstruksi, dan commissioning ditangani tim yang sama.</span>
-          </li>
-          <li>
-            <strong>Desain mengikuti sumber air</strong>
-            <span>Parameter air baku menentukan proses, bukan sebaliknya.</span>
-          </li>
-          <li>
-            <strong>Mudah dioperasikan</strong>
-            <span>Operator dilibatkan sejak commissioning dan diberi pelatihan.</span>
-          </li>
-        </ul>
+        <div class="ipa-grid">
+          {ipaSizes.map((s) => (
+            <article class="ipa-card">
+              <Image
+                src={s.image}
+                alt={s.alt}
+                width={900}
+                format="webp"
+                quality={80}
+                loading="lazy"
+                class="ipa-card__img"
+              />
+              <p class="ipa-card__cap">
+                <svg viewBox="0 0 32 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M16 3c3 5.2 11 13.7 11 22.5a11 11 0 0 1-22 0C5 16.7 13 8.2 16 3Z"></path>
+                </svg>
+                <span><strong>{s.capacity}</strong> Liter/Detik</span>
+              </p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
 

@@ -1,4 +1,9 @@
 // Semua konten hardcode ada di sini. Edit file ini saja untuk ganti teks/data.
+import ipa10 from '../assets/ipa-10l.png';
+import ipa20 from '../assets/ipa-20l.png';
+import ipa30 from '../assets/ipa-30l.png';
+import ipa40 from '../assets/ipa-40l.png';
+import ipa50 from '../assets/ipa-50l.png';
 
 export const site = {
   name: 'PT. Tri Cipta Patriot',
@@ -15,7 +20,7 @@ export const site = {
 
 export const nav = [
   { href: '#beranda', label: 'Beranda' },
-  { href: '#tentang', label: 'Tentang Kami' },
+  { href: '#ipa', label: 'IPA Struktur Baja' },
   { href: '#layanan', label: 'Layanan' },
   { href: '#proyek', label: 'Proyek' },
   { href: '#kontak', label: 'Kontak' },
@@ -91,4 +96,12 @@ export const needs = [
   'Reverse Osmosis',
   'Operasi & Pemeliharaan',
   'Konsultasi / lain-lain',
+];
+
+export const ipaSizes = [
+  { capacity: 10, image: ipa10, alt: 'IPA struktur baja kapasitas 10 liter per detik' },
+  { capacity: 20, image: ipa20, alt: 'IPA struktur baja kapasitas 20 liter per detik' },
+  { capacity: 30, image: ipa30, alt: 'IPA struktur baja kapasitas 30 liter per detik' },
+  { capacity: 40, image: ipa40, alt: 'IPA struktur baja kapasitas 40 liter per detik' },
+  { capacity: 50, image: ipa50, alt: 'IPA struktur baja kapasitas 50 liter per detik' },
 ];

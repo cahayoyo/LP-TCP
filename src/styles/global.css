@@ -9,7 +9,7 @@
   --line: #dde7ee;
   --radius: 14px;
   --max: 1140px;
-  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 *,
@@ -638,19 +638,6 @@ img {
 }
 
 /* Grids */
-.split {
-  display: grid;
-  gap: clamp(2rem, 5vw, 3.5rem);
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 900px) {
-  .split {
-    grid-template-columns: 1.05fr 0.95fr;
-    align-items: start;
-  }
-}
-
 .cards {
   display: grid;
   gap: 1.25rem;
@@ -699,28 +686,222 @@ img {
   background: var(--accent);
 }
 
-.stat-list {
-  display: grid;
-  gap: 1rem;
+/* IPA struktur baja */
+/* 1700px: 3 kartu a 535px + gap + padding, target lebar kartu mockup */
+.wrap--wide {
+  max-width: 1700px;
+}
+
+.ipa-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 142px;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.ipa-head h2 {
   margin: 0;
-  padding: 0;
-  list-style: none;
+  font-size: min(72px, 5.5vw);
+  font-weight: 900;
+  line-height: 1.1;
 }
 
-.stat-list li {
-  border-left: 3px solid var(--accent);
-  padding-left: 1rem;
-}
-
-.stat-list strong {
-  display: block;
+.ipa-sub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin: 0;
+  font-size: min(24px, 2vw);
+  font-weight: 500;
   color: var(--ink);
-  font-size: 1rem;
 }
 
-.stat-list span {
-  font-size: 0.9rem;
-  color: var(--muted);
+.ipa-sub::before,
+.ipa-sub::after {
+  content: "";
+  height: 2px;
+  width: 85px;
+  border-radius: 2px;
+  background: var(--brand);
+  opacity: 0.35;
+  flex: none;
+}
+
+.ipa-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Card 50 liter sendirian di baris ketiga, lebar sama dengan card lain */
+.ipa-card:last-child {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: calc((100% - 1.5rem) / 2);
+}
+
+.ipa-card {
+  display: flex;
+  flex-direction: column;
+  background: #003b85;
+  border: 1.5px solid #00bfff;
+  border-radius: 24px;
+  padding: 12px;
+}
+
+.ipa-card__img {
+  width: 100%;
+  /* height:auto wajib: atribut height dari astro:assets mengalahkan aspect-ratio */
+  height: auto;
+  /* Tinggi sesuai kotak merah: rasio 12:5 */
+  aspect-ratio: 12 / 5;
+  object-fit: cover;
+  border-radius: 120px;
+  background: #00295f;
+}
+
+.ipa-card__cap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 76%;
+  height: 65px;
+  margin: 0 auto;
+  background: #00295f;
+  border-radius: 999px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.ipa-card__cap svg {
+  width: 32px;
+  height: 40px;
+  /* Gap 10 + margin 10 = jarak ikon ke angka 20px */
+  margin-right: 10px;
+  color: #8ce8ff;
+  flex: none;
+}
+
+.ipa-card__cap strong {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1;
+  color: #00d9f5;
+}
+
+/* Header IPA versi tablet */
+@media (max-width: 991px) {
+  .ipa-head {
+    gap: 12px;
+    min-height: 120px;
+  }
+
+  .ipa-head h2 {
+    font-size: min(46px, 6.5vw);
+  }
+
+  .ipa-sub {
+    font-size: min(17px, 2vw);
+  }
+
+  .ipa-sub::before,
+  .ipa-sub::after {
+    width: 55px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ipa-head {
+    gap: 7px;
+    min-height: 100px;
+  }
+
+  .ipa-head h2 {
+    font-size: clamp(23px, 7vw, 32px);
+  }
+
+  .ipa-sub {
+    font-size: clamp(10px, 3.4vw, 13px);
+  }
+
+  .ipa-sub::before,
+  .ipa-sub::after {
+    width: clamp(18px, 7vw, 28px);
+  }
+
+  .ipa-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .ipa-card:last-child {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  /* Layout mobile: foto kiri, kapasitas kanan */
+  .ipa-card {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 14px;
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  .ipa-card__img {
+    width: 56%;
+    height: auto;
+    aspect-ratio: auto;
+    border-radius: 16px;
+  }
+
+  .ipa-card__cap {
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: auto;
+    height: auto;
+    font-size: 16px;
+    background: transparent;
+  }
+
+  .ipa-card__cap svg {
+    display: block;
+    width: 26px;
+    height: 33px;
+    margin: 0;
+  }
+
+  /* Angka + satuan + garis aksen ditumpuk di samping ikon */
+  .ipa-card__cap span {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .ipa-card__cap strong {
+    display: block;
+    font-size: 34px;
+  }
+
+  /* Garis aksen di bawah teks kapasitas */
+  .ipa-card__cap span::after {
+    content: "";
+    width: 44px;
+    height: 2px;
+    border-radius: 2px;
+    background: #00d9f5;
+  }
 }
 
 /* Process */
