@@ -19,6 +19,12 @@ import selatNasik from '../assets/ipa-selatnasik.png';
 import cikarang from '../assets/ipa-cikarang.png';
 import sukmajaya from '../assets/pipa-sukmajaya.png';
 import terabek from '../assets/pipa-terabek.png';
+import drainaseDepok from '../assets/drainase-depok.png';
+import boosterSukatani from '../assets/booster-sukatani.png';
+import filterCiburial from '../assets/filter-ciburial.png';
+import waterTankSawangan from '../assets/watertank-sawangan.png';
+import pipaGiDepok from '../assets/pipa-gi-depok.png';
+import drainaseMekarsari from '../assets/drainase-mekarsari.png';
 import sandblasting from '../assets/sandblasting1.png';
 import unloading from '../assets/unloading.png';
 import pengecatan from '../assets/pengecatan.png';
@@ -86,7 +92,7 @@ export const workshop = {
   ],
 };
 
-// TODO: 8 foto proyek lainnya menyusul (placeholder svg) — 9 proyek sudah pakai foto asli.
+// Semua 17 foto proyek sudah foto asli.
 export const projects = [
   {
     tag: 'IPA Baja',
@@ -192,8 +198,8 @@ export const projects = [
     title: 'Pembangunan Drainase Primer Kota Depok',
     location: 'Depok, Jawa Barat',
     spec: '',
-    image: '/img/proyek-3.svg',
-    alt: 'Pembangunan Drainase Primer Kota Depok',
+    image: drainaseDepok,
+    alt: 'Pembangunan Drainase Primer Kota Depok di Jawa Barat',
   },
   {
     tag: 'Pompa Booster',
@@ -201,24 +207,24 @@ export const projects = [
     location: 'Sukatani, Jawa Barat',
     spec: '500 m³',
     specIcon: 'droplet',
-    image: '/img/proyek-1.svg',
-    alt: 'Pembangunan Booster Pump Sukatani',
+    image: boosterSukatani,
+    alt: 'Pembangunan Booster Pump Sukatani di Jawa Barat',
   },
   {
     tag: 'Filter Air',
     title: 'Pembangunan Filter Mata Air Ciburial',
     location: 'Ciomas, Jawa Barat',
     spec: '',
-    image: '/img/proyek-2.svg',
-    alt: 'Pembangunan Filter Mata Air Ciburial',
+    image: filterCiburial,
+    alt: 'Pembangunan Filter Mata Air Ciburial di Jawa Barat',
   },
   {
     tag: 'Water Tank',
     title: 'Pembangunan Water Tank Sawangan',
     location: 'Sawangan, Jawa Barat',
     spec: '',
-    image: '/img/proyek-3.svg',
-    alt: 'Pembangunan Water Tank Sawangan',
+    image: waterTankSawangan,
+    alt: 'Pembangunan Water Tank Sawangan di Jawa Barat',
   },
   {
     tag: 'Pipa Distribusi',
@@ -226,16 +232,16 @@ export const projects = [
     title: 'Pembangunan Jembatan Pipa GI Dia. 300 mm Grand Depok City',
     location: 'Depok, Jawa Barat',
     spec: '',
-    image: '/img/proyek-1.svg',
-    alt: 'Pembangunan Jembatan Pipa GI Dia. 300 mm Grand Depok City',
+    image: pipaGiDepok,
+    alt: 'Pembangunan Jembatan Pipa GI Dia. 300 mm Grand Depok City di Jawa Barat',
   },
   {
     tag: 'Drainase',
     title: 'Penataan Drainase Inlet Kali Cipinang RW.13 Kel. Mekarsari',
     location: 'Mekarsari, Jawa Barat',
     spec: '',
-    image: '/img/proyek-2.svg',
-    alt: 'Penataan Drainase Inlet Kali Cipinang RW.13 Kel. Mekarsari',
+    image: drainaseMekarsari,
+    alt: 'Penataan Drainase Inlet Kali Cipinang RW.13 Kel. Mekarsari di Jawa Barat',
   },
 ];
 

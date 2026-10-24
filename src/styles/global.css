@@ -1382,6 +1382,19 @@ img {
   background: #fff;
 }
 
+/* Proyek di background terang: dots versi biru gelap */
+#proyek .car-dot {
+  background: rgba(11, 63, 114, 0.25);
+}
+
+#proyek .car-dot:hover {
+  background: rgba(11, 63, 114, 0.5);
+}
+
+#proyek .car-dot.is-active {
+  background: #1667e0;
+}
+
 /* Header workshop versi tablet */
 @media (max-width: 991px) {
   .ws-grid {
