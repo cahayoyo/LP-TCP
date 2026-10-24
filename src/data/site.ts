@@ -14,9 +14,9 @@ export const site = {
 };
 
 export const nav = [
-  { href: '#tentang', label: 'Tentang' },
+  { href: '#beranda', label: 'Beranda' },
+  { href: '#tentang', label: 'Tentang Kami' },
   { href: '#layanan', label: 'Layanan' },
-  { href: '#proses', label: 'Proses' },
   { href: '#proyek', label: 'Proyek' },
   { href: '#kontak', label: 'Kontak' },
 ];

@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site, services, steps, projects, needs } from '../data/site';
 import { saveContact } from '../lib/contact';
+import heroPhoto from '../assets/ipa-1.png';
 
 let status: 'ok' | 'error' | null = null;
 let errorMessage = '';
@@ -29,26 +31,89 @@ if (Astro.url.searchParams.has('gagal')) {
   <Header />
 
   <main id="main">
-    <section class="hero">
+    <section class="hero" id="beranda">
+      <Image
+        src={heroPhoto}
+        alt="Instalasi Pengolahan Air (IPA) baja milik PT. Tri Cipta Patriot"
+        width={1672}
+        height={941}
+        format="webp"
+        quality={82}
+        class="hero__bg"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="hero__shade" aria-hidden="true"></div>
+
       <div class="wrap hero__inner">
-        <span class="eyebrow">{site.tagline}</span>
-        <h1>Solusi instalasi pengolahan air, dari desain sampai beroperasi.</h1>
+        <span class="eyebrow">Kontraktor Spesialis Pengolahan Air</span>
+        <h1>Solusi Terpadu<br />Instalasi <span class="hl">Pengolahan<br />Air</span> (IPA) Baja</h1>
         <p class="hero__lead">
-          {site.name} menangani perencanaan, konstruksi, commissioning, dan pemeliharaan
-          water treatment plant untuk kebutuhan industri, komersial, dan kawasan.
+          {site.name} adalah perusahaan kontraktor yang berfokus pada konstruksi, fabrikasi,
+          dan instalasi pengolahan air berbasis baja dengan dukungan workshop sendiri di
+          Purwakarta.
         </p>
+
         <div class="hero__actions">
-          <a class="btn btn--primary" href="#kontak">Konsultasikan kebutuhan Anda</a>
-          <a class="btn btn--ghost" href="#layanan">Lihat layanan</a>
+          <a class="btn btn--primary" href="#kontak">
+            Minta Penawaran
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="btn__icon">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </a>
+          <a class="btn btn--ghost" href="#proyek">
+            Lihat Projek Kami
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="btn__icon">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </a>
         </div>
-        <div class="hero__meta">
-          <span>Design</span>
-          <span>Engineering</span>
-          <span>Construction</span>
-          <span>Commissioning</span>
-          <span>O&amp;M</span>
-        </div>
+
+        <ul class="hero__stats">
+          <li>
+            <svg class="hero__stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 20h18"></path>
+              <path d="M5 20V7.5L11 5l6 2.5V20"></path>
+              <path d="M9 20v-5h4v5"></path>
+              <path d="M8 10h.01M11 10h.01M14 10h.01"></path>
+            </svg>
+            <span>Workshop<br />Fabrikasi Sendiri</span>
+            <small class="stat-sub--mobile">di Purwakarta, Jawa Barat</small>
+          </li>
+          <li>
+            <svg class="hero__stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3c3.5 4.6 6 8 6 11a6 6 0 0 1-12 0c0-3 2.5-6.4 6-11Z"></path>
+            </svg>
+            <span>
+              <span class="stat-swap--desktop">10–50 L/detik</span>
+              <span class="stat-swap--mobile">10–50 Liter/Detik</span>
+            </span>
+            <small>Kapasitas IPA</small>
+          </li>
+          <li>
+            <svg class="hero__stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <g transform="rotate(45 12 12)">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+              </g>
+              <g transform="rotate(-45 12 12)">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+              </g>
+            </svg>
+            <span>Fabrikasi hingga<br />Commissioning</span>
+            <small class="stat-sub--mobile">Solusi End-to-End</small>
+          </li>
+        </ul>
       </div>
+
+      <svg class="hero__wave" viewBox="0 0 1440 130" preserveAspectRatio="none" aria-hidden="true">
+        <path
+          d="M0,64 C220,108 480,116 730,92 C980,68 1220,28 1440,56 L1440,130 L0,130 Z"
+          fill="#4e9be0"
+          opacity="0.6"></path>
+        <path
+          d="M0,86 C240,124 500,128 750,100 C1000,72 1240,46 1440,76 L1440,130 L0,130 Z"
+          fill="#ffffff"></path>
+      </svg>
     </section>
 
     <section class="section" id="tentang">
