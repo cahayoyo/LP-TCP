@@ -132,7 +132,7 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  min-height: 72px;
+  min-height: 88px;
 }
 
 .brand {
@@ -143,24 +143,16 @@ img {
   color: var(--ink);
 }
 
-.brand__mark {
-  width: 38px;
-  height: 38px;
-  flex: none;
+.brand__logo {
+  width: 200px;
+  height: auto;
+  display: block;
 }
 
-.brand__name {
-  display: block;
-  font-weight: 700;
-  font-size: 0.98rem;
-  line-height: 1.15;
-}
-
-.brand__tag {
-  display: block;
-  font-size: 0.72rem;
-  color: var(--muted);
-  letter-spacing: 0.04em;
+@media (max-width: 640px) {
+  .brand__logo {
+    width: 150px;
+  }
 }
 
 .nav {
