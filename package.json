@@ -1,0 +1,21 @@
+{
+  "name": "lp-tcp",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "start": "node ./dist/server/entry.mjs",
+    "db:init": "psql \"$DATABASE_URL\" -f db/schema.sql"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.9",
+    "astro": "^7.4.2",
+    "postgres": "^3.4.9"
+  }
+}

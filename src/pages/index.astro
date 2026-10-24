@@ -1,0 +1,248 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site, services, steps, projects, needs } from '../data/site';
+import { saveContact } from '../lib/contact';
+
+let status: 'ok' | 'error' | null = null;
+let errorMessage = '';
+
+if (Astro.request.method === 'POST') {
+  try {
+    const result = await saveContact(await Astro.request.formData());
+    return Astro.redirect(result.ok ? '/?terkirim=1#kontak' : '/?gagal=1#kontak', 303);
+  } catch (err) {
+    console.error('contact form failed:', err);
+    return Astro.redirect('/?gagal=1#kontak', 303);
+  }
+}
+
+if (Astro.url.searchParams.has('terkirim')) status = 'ok';
+if (Astro.url.searchParams.has('gagal')) {
+  status = 'error';
+  errorMessage = 'Pesan gagal dikirim. Coba lagi atau hubungi kami lewat email.';
+}
+---
+
+<Base>
+  <Header />
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero__inner">
+        <span class="eyebrow">{site.tagline}</span>
+        <h1>Solusi instalasi pengolahan air, dari desain sampai beroperasi.</h1>
+        <p class="hero__lead">
+          {site.name} menangani perencanaan, konstruksi, commissioning, dan pemeliharaan
+          water treatment plant untuk kebutuhan industri, komersial, dan kawasan.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#kontak">Konsultasikan kebutuhan Anda</a>
+          <a class="btn btn--ghost" href="#layanan">Lihat layanan</a>
+        </div>
+        <div class="hero__meta">
+          <span>Design</span>
+          <span>Engineering</span>
+          <span>Construction</span>
+          <span>Commissioning</span>
+          <span>O&amp;M</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tentang">
+      <div class="wrap split">
+        <div>
+          <span class="eyebrow">Tentang kami</span>
+          <h2>Fokus pada satu hal: air yang memenuhi standar.</h2>
+          <p class="lead">
+            Instalasi pengolahan air bukan sekadar susunan tangki dan pompa. Kualitas hasil
+            akhir bergantung pada desain proses yang tepat, pemasangan yang rapi, dan
+            pengaturan operasi yang konsisten.
+          </p>
+          <p>
+            Kami bekerja dari analisis sumber air di awal, menyusun desain proses, membangun
+            unit di lokasi, lalu mendampingi operasi sampai kualitas air sesuai target yang
+            disepakati.
+          </p>
+        </div>
+
+        <ul class="stat-list">
+          <li>
+            <strong>Satu titik tanggung jawab</strong>
+            <span>Desain, konstruksi, dan commissioning ditangani tim yang sama.</span>
+          </li>
+          <li>
+            <strong>Desain mengikuti sumber air</strong>
+            <span>Parameter air baku menentukan proses, bukan sebaliknya.</span>
+          </li>
+          <li>
+            <strong>Mudah dioperasikan</strong>
+            <span>Operator dilibatkan sejak commissioning dan diberi pelatihan.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--surface" id="layanan">
+      <div class="wrap">
+        <span class="eyebrow">Layanan</span>
+        <h2>Yang kami kerjakan</h2>
+        <p class="lead" style="margin-bottom: 2.5rem;">
+          Lingkup pekerjaan disesuaikan dengan kondisi lokasi dan kebutuhan kapasitas.
+        </p>
+
+        <div class="cards">
+          {services.map((s) => (
+            <article class="card">
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+              <ul class="checklist">
+                {s.points.map((p) => <li>{p}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proses">
+      <div class="wrap">
+        <span class="eyebrow">Alur kerja</span>
+        <h2>Empat tahap, satu hasil yang terukur</h2>
+        <p class="lead" style="margin-bottom: 2.5rem;">
+          Setiap tahap punya keluaran yang jelas, sehingga progres proyek mudah dipantau.
+        </p>
+
+        <ol class="steps">
+          {steps.map((s) => (
+            <li>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--surface" id="proyek">
+      <div class="wrap">
+        <span class="eyebrow">Proyek</span>
+        <h2>Contoh lingkup pekerjaan</h2>
+        <p class="lead" style="margin-bottom: 2.5rem;">
+          Foto dan data proyek akan diperbarui pada bagian ini.
+        </p>
+
+        <div class="cards">
+          {projects.map((p) => (
+            <article class="project">
+              <img src={p.image} alt={p.alt} width="640" height="400" loading="lazy" />
+              <div class="project__body">
+                <h3>{p.title}</h3>
+                <p>{p.meta}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontak">
+      <div class="wrap">
+        <span class="eyebrow">Kontak</span>
+        <h2>Ceritakan kebutuhan instalasi Anda</h2>
+        <p class="lead" style="margin-bottom: 2.5rem;">
+          Isi formulir di bawah, kami akan menghubungi Anda untuk membahas kebutuhan teknis.
+        </p>
+
+        {status === 'ok' && (
+          <div class="alert alert--ok" role="status" aria-live="polite">
+            Terima kasih. Pesan Anda sudah kami terima dan akan segera ditindaklanjuti.
+          </div>
+        )}
+        {status === 'error' && (
+          <div class="alert alert--error" role="alert">{errorMessage}</div>
+        )}
+
+        <div class="contact-grid">
+          <form class="form" method="post" action="#kontak" novalidate>
+            <div class="field">
+              <label for="name">Nama <span aria-hidden="true">*</span></label>
+              <input id="name" name="name" type="text" required maxlength="100" autocomplete="name" />
+            </div>
+
+            <div class="field">
+              <label for="company">Perusahaan</label>
+              <input id="company" name="company" type="text" maxlength="150" autocomplete="organization" />
+            </div>
+
+            <div class="field">
+              <label for="email">Email <span aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" required maxlength="254" autocomplete="email" />
+            </div>
+
+            <div class="field">
+              <label for="phone">Telepon / WhatsApp</label>
+              <input id="phone" name="phone" type="tel" maxlength="40" autocomplete="tel" />
+            </div>
+
+            <div class="field field--full">
+              <label for="need">Kebutuhan</label>
+              <select id="need" name="need">
+                <option value="">Pilih kebutuhan</option>
+                {needs.map((n) => <option value={n}>{n}</option>)}
+              </select>
+            </div>
+
+            <div class="field field--full">
+              <label for="message">Pesan <span aria-hidden="true">*</span></label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                minlength="10"
+                maxlength="5000"
+                placeholder="Contoh: butuh WTP kapasitas 20 liter/detik dengan sumber air sungai, lokasi di Jawa Barat."
+              ></textarea>
+              <span class="field__hint">Sertakan kapasitas, sumber air, dan lokasi bila sudah ada.</span>
+            </div>
+
+            <div class="hp" aria-hidden="true">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="form__foot">
+              <p>
+                Data yang Anda kirim hanya digunakan untuk menindaklanjuti permintaan ini.
+              </p>
+              <button class="btn btn--primary" type="submit">Kirim pesan</button>
+            </div>
+          </form>
+
+          <dl class="contact-info">
+            <div class="contact-info__item">
+              <dt>Email</dt>
+              <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+            </div>
+            <div class="contact-info__item">
+              <dt>Telepon</dt>
+              <dd><a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a></dd>
+            </div>
+            <div class="contact-info__item">
+              <dt>Alamat</dt>
+              <dd>{site.address}</dd>
+            </div>
+            <div class="contact-info__item">
+              <dt>Jam kerja</dt>
+              <dd>{site.hours}</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>

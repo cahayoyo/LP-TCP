@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="Ilustrasi unit reverse osmosis">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b2b3d"/>
+      <stop offset="1" stop-color="#0e4a5c"/>
+    </linearGradient>
+    <linearGradient id="tube" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fd8e6"/>
+      <stop offset="1" stop-color="#2f86a3"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" fill="url(#bg3)"/>
+  <rect y="320" width="640" height="80" fill="#092530"/>
+  <g fill="url(#tube)">
+    <rect x="60" y="150" width="420" height="34" rx="17"/>
+    <rect x="60" y="200" width="420" height="34" rx="17"/>
+    <rect x="60" y="250" width="420" height="34" rx="17"/>
+  </g>
+  <g fill="#0a2530" opacity="0.85">
+    <rect x="40" y="130" width="26" height="174" rx="8"/>
+    <rect x="474" y="130" width="26" height="174" rx="8"/>
+  </g>
+  <g fill="#12a594" opacity="0.85">
+    <circle cx="540" cy="168" r="7"/>
+    <circle cx="540" cy="217" r="7"/>
+    <circle cx="540" cy="267" r="7"/>
+  </g>
+  <path d="M540 168h40M540 217h40M540 267h40" stroke="#7fe3d4" stroke-width="3" opacity="0.5"/>
+  <circle cx="110" cy="80" r="44" fill="#12a594" opacity="0.25"/>
+</svg>

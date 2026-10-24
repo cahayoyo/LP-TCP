@@ -1,0 +1,42 @@
+---
+import { site, nav } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h3>{site.name}</h3>
+        <p>{site.tagline}. Melayani perencanaan, konstruksi, dan pemeliharaan instalasi pengolahan air.</p>
+      </div>
+
+      <div>
+        <h3>Navigasi</h3>
+        <p>
+          {nav.map((item, i) => (
+            <>
+              {i > 0 && <br />}
+              <a href={item.href}>{item.label}</a>
+            </>
+          ))}
+        </p>
+      </div>
+
+      <div>
+        <h3>Kontak</h3>
+        <p>
+          <a href={`mailto:${site.email}`}>{site.email}</a><br />
+          <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a><br />
+          {site.address}
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {year} {site.name}. Seluruh hak dilindungi.</span>
+      <span>{site.hours}</span>
+    </div>
+  </div>
+</footer>
