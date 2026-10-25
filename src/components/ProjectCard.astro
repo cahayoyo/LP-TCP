@@ -21,7 +21,17 @@ const { p } = Astro.props;
   {typeof p.image === 'string' ? (
     <img src={p.image} alt={p.alt} width="640" height="480" loading="lazy" />
   ) : (
-    <Image src={p.image} alt={p.alt} width={640} format="webp" quality={80} loading="lazy" />
+    <Image
+      src={p.image}
+      alt={p.alt}
+      width={650}
+      height={500}
+      widths={[240, 320, 400, 560, 650, 800]}
+      sizes="(max-width: 480px) 74vw, (max-width: 640px) 340px, (max-width: 800px) calc(46vw - 8px), (max-width: 991px) calc(50vw - 40px), (max-width: 1700px) calc(25vw - 28px), 397px"
+      format="webp"
+      quality={70}
+      loading="lazy"
+    />
   )}
   <span class="pr-card__tag">{p.tag}</span>
   <div class="pr-card__info">

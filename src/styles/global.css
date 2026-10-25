@@ -1116,7 +1116,7 @@ img {
   margin: 0;
 }
 
-.car-dots--corner .car-dot {
+.car-dots--corner .car-dot::before {
   box-shadow: 0 1px 5px rgba(4, 24, 46, 0.55);
 }
 
@@ -1204,7 +1204,7 @@ img {
   font-weight: 800;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #1d7fe0;
+  color: #1463b3;
 }
 
 .ws-copy h3 {
@@ -1393,41 +1393,56 @@ img {
 /* Dots posisi carousel */
 .car-dots {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: 4px;
   margin-top: 0.85rem;
 }
 
 .car-dot {
-  width: 9px;
-  height: 9px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
   padding: 0;
   border: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.32);
+  background: transparent;
   cursor: pointer;
-  transition: background 0.15s ease, width 0.15s ease;
 }
 
-.car-dot:hover {
+.car-dot::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.32);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.car-dot:hover::before {
   background: rgba(255, 255, 255, 0.55);
 }
 
-.car-dot.is-active {
-  width: 26px;
+.car-dot.is-active::before {
+  transform: scaleX(2.89);
   background: #fff;
 }
 
-/* Proyek di background terang: dots versi biru gelap */
-#proyek .car-dot {
-  background: rgba(11, 63, 114, 0.25);
+/* Dots gelap menjaga kontras kontrol di bagian berlatar terang. */
+#proyek .car-dot::before,
+#pengguna-jasa .car-dot::before {
+  background: #71879c;
 }
 
-#proyek .car-dot:hover {
-  background: rgba(11, 63, 114, 0.5);
+#proyek .car-dot:hover::before,
+#pengguna-jasa .car-dot:hover::before {
+  background: var(--brand-dark);
 }
 
-#proyek .car-dot.is-active {
+#proyek .car-dot.is-active::before,
+#pengguna-jasa .car-dot.is-active::before {
   background: #1667e0;
 }
 

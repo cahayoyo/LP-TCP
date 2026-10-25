@@ -1,6 +1,10 @@
 # Landing Page — PT. Tri Cipta Patriot
 
-Astro 7 (SSR) on Node 24. Single landing page, no CMS, no database.
+Astro 7 on Node 24. Single landing page, no CMS, no database.
+
+Homepage HTML and responsive images are generated at build time to avoid image
+processing during page requests. The healthcheck and brochure API routes still
+run on the standalone Node server. Content changes require a rebuild.
 
 ## Stack
 

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '@fontsource-variable/inter';
+import interFontUrl from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import { site } from '../data/site';
 import logo from '../assets/logo-navbar.png';
 import socialImage from '../assets/og-tcp.jpg';
@@ -47,6 +48,7 @@ const structuredData = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href={interFontUrl} as="font" type="font/woff2" crossorigin />
 
     <!-- Google tag (gtag.js) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-CW919NRRTV"></script>

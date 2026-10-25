@@ -8,6 +8,9 @@ import ClientCard from '../components/ClientCard.astro';
 import { site, workshop, projects, ipaSizes, clients } from '../data/site';
 import MapIndonesia from '../components/MapIndonesia.astro';
 import heroPhoto from '../assets/ipa-1.png';
+
+// Konten tetap dan gambar disiapkan saat build agar request awal tidak menunggu transformasi.
+export const prerender = true;
 ---
 
 <Base>
@@ -21,7 +24,9 @@ import heroPhoto from '../assets/ipa-1.png';
         width={1672}
         height={941}
         format="webp"
-        quality={82}
+        quality={72}
+        widths={[400, 640, 750, 960, 1280, 1672]}
+        sizes="(max-width: 991px) 100vw, 1100px"
         class="hero__bg"
         loading="eager"
         fetchpriority="high"
@@ -115,8 +120,10 @@ import heroPhoto from '../assets/ipa-1.png';
                 src={s.image}
                 alt={s.alt}
                 width={900}
+                widths={[200, 320, 400, 480, 640, 800, 1200, 1600]}
+                sizes="(max-width: 640px) calc(56vw - 30px), (max-width: 800px) calc(46vw - 38px), (max-width: 1700px) calc(50vw - 70px), 780px"
                 format="webp"
-                quality={80}
+                quality={70}
                 loading="lazy"
                 class="ipa-card__img"
               />
@@ -144,7 +151,17 @@ import heroPhoto from '../assets/ipa-1.png';
             <ul class="ws-slides" data-track>
               {workshop.slides.map((s) => (
                 <li>
-                  <Image src={s.image} alt={s.alt} width={1200} format="webp" quality={82} loading="lazy" />
+                  <Image
+                    src={s.image}
+                    alt={s.alt}
+                    width={1200}
+                    height={923}
+                    widths={[320, 480, 640, 720, 960, 1200, 1600]}
+                    sizes="(max-width: 695px) 92vw, (max-width: 991px) 640px, (max-width: 1700px) calc(52vw - 60px), 828px"
+                    format="webp"
+                    quality={72}
+                    loading="lazy"
+                  />
                 </li>
               ))}
             </ul>
@@ -243,7 +260,17 @@ import heroPhoto from '../assets/ipa-1.png';
                 {typeof g.image === 'string' ? (
                   <img src={g.image} alt={g.alt} width="480" height="360" loading="lazy" />
                 ) : (
-                  <Image src={g.image} alt={g.alt} width={480} format="webp" quality={80} loading="lazy" />
+                  <Image
+                    src={g.image}
+                    alt={g.alt}
+                    width={480}
+                    height={360}
+                    widths={[200, 320, 400, 480, 560, 640, 800]}
+                    sizes="(max-width: 530px) calc(72vw - 42px), (max-width: 640px) 340px, (max-width: 1700px) calc(20vw - 40px), 300px"
+                    format="webp"
+                    quality={70}
+                    loading="lazy"
+                  />
                 )}
                 <p>{g.caption}</p>
               </li>
@@ -299,7 +326,10 @@ import heroPhoto from '../assets/ipa-1.png';
         let dots: HTMLButtonElement[] = [];
         const updateDots = () => {
           const i = Math.min(dots.length - 1, Math.max(0, Math.round(track.scrollLeft / step())));
-          for (const [j, d] of dots.entries()) d.classList.toggle('is-active', j === i);
+          for (const [j, d] of dots.entries()) {
+            d.classList.toggle('is-active', j === i);
+            d.setAttribute('aria-current', j === i ? 'true' : 'false');
+          }
         };
         const build = () => {
           if (!dotsBox) return;
