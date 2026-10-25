@@ -10,14 +10,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "start": "node ./dist/server/entry.mjs",
-    "db:init": "psql \"$DATABASE_URL\" -f db/schema.sql"
+    "start": "node ./dist/server/entry.mjs"
   },
   "dependencies": {
     "@astrojs/node": "^11.1.9",
     "@fontsource-variable/inter": "^5.3.0",
     "astro": "^7.4.2",
-    "pdfjs-dist": "4.10.38",
-    "postgres": "^3.4.9"
+    "pdfjs-dist": "4.10.38"
   }
 }

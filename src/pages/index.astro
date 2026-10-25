@@ -3,28 +3,9 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site, workshop, projects, needs, ipaSizes } from '../data/site';
-import { saveContact } from '../lib/contact';
+import ProjectCard from '../components/ProjectCard.astro';
+import { site, workshop, projects, ipaSizes } from '../data/site';
 import heroPhoto from '../assets/ipa-1.png';
-
-let status: 'ok' | 'error' | null = null;
-let errorMessage = '';
-
-if (Astro.request.method === 'POST') {
-  try {
-    const result = await saveContact(await Astro.request.formData());
-    return Astro.redirect(result.ok ? '/?terkirim=1#kontak' : '/?gagal=1#kontak', 303);
-  } catch (err) {
-    console.error('contact form failed:', err);
-    return Astro.redirect('/?gagal=1#kontak', 303);
-  }
-}
-
-if (Astro.url.searchParams.has('terkirim')) status = 'ok';
-if (Astro.url.searchParams.has('gagal')) {
-  status = 'error';
-  errorMessage = 'Pesan gagal dikirim. Coba lagi atau hubungi kami lewat email.';
-}
 ---
 
 <Base>
@@ -55,22 +36,20 @@ if (Astro.url.searchParams.has('gagal')) {
         </p>
 
         <div class="hero__actions">
-          <a class="btn btn--primary" href="#">
+          <a class="btn btn--primary" href="https://katalog.inaproc.id/tri-cipta-patriot" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="btn__icon">
               <path d="M5 8h14l-1.2 12.2a1.8 1.8 0 0 1-1.8 1.8H8a1.8 1.8 0 0 1-1.8-1.8L5 8Z"></path>
               <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
             </svg>
             E-Katalog V6
           </a>
-          <a class="btn btn--ghost" href="#workshop">
+          <button type="button" class="btn btn--ghost" data-open-map>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="btn__icon">
-              <path d="M3 20h18"></path>
-              <path d="M5 20V7.5L11 5l6 2.5V20"></path>
-              <path d="M9 20v-5h4v5"></path>
-              <path d="M8 10h.01M11 10h.01M14 10h.01"></path>
+              <path d="M12 21s-7-5.1-7-11a7 7 0 0 1 14 0c0 5.9-7 11-7 11Z"></path>
+              <circle cx="12" cy="10" r="2.5"></circle>
             </svg>
-            Workshop
-          </a>
+            Lokasi Workshop
+          </button>
         </div>
 
         <ul class="hero__stats">
@@ -81,15 +60,15 @@ if (Astro.url.searchParams.has('gagal')) {
               <path d="M9 20v-5h4v5"></path>
               <path d="M8 10h.01M11 10h.01M14 10h.01"></path>
             </svg>
-            <span>Workshop<br />Fabrikasi Sendiri</span>
-            <small class="stat-sub--mobile">di Purwakarta, Jawa Barat</small>
+            <span>Workshop IPA TCP</span>
+            <small class="stat-sub--mobile">Purwakarta, Jawa Barat</small>
           </li>
           <li>
             <svg class="hero__stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 3c3.5 4.6 6 8 6 11a6 6 0 0 1-12 0c0-3 2.5-6.4 6-11Z"></path>
             </svg>
             <span>
-              <span class="stat-swap--desktop">10–50 L/detik</span>
+              <span class="stat-swap--desktop">10 - 50 Liter / Detik</span>
               <span class="stat-swap--mobile">10–50 Liter/Detik</span>
             </span>
             <small>Kapasitas IPA</small>
@@ -104,7 +83,7 @@ if (Astro.url.searchParams.has('gagal')) {
               </g>
             </svg>
             <span>Fabrikasi hingga<br />Commissioning</span>
-            <small class="stat-sub--mobile">Solusi End-to-End</small>
+            <small class="stat-sub--mobile">End to End</small>
           </li>
         </ul>
       </div>
@@ -274,6 +253,25 @@ if (Astro.url.searchParams.has('gagal')) {
       </div>
     </section>
 
+    <!-- Modal peta workshop: iframe dimuat hanya saat pertama dibuka -->
+    <div class="map-modal" data-map-modal hidden>
+      <div class="map-modal__backdrop" data-map-close></div>
+      <div class="map-modal__panel" role="dialog" aria-modal="true" aria-label="Lokasi Workshop PT. Tri Cipta Patriot">
+        <button type="button" class="map-modal__close" data-map-close aria-label="Tutup peta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18"></path>
+          </svg>
+        </button>
+        <iframe
+          data-map-frame
+          title="Peta Lokasi Workshop PT. Tri Cipta Patriot"
+          data-src="https://maps.google.com/maps?q=-6.6830985,107.4245719&z=17&output=embed"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
     <script>
       // Semua carousel workshop: panah dinamis, dots posisi, dan swipe mouse.
       for (const root of document.querySelectorAll<HTMLElement>('[data-carousel]')) {
@@ -310,7 +308,7 @@ if (Astro.url.searchParams.has('gagal')) {
           for (let i = 0; i < count; i++) {
             const d = document.createElement('button');
             d.type = 'button';
-            d.className = 'ws-dot';
+            d.className = 'car-dot';
             d.setAttribute('aria-label', `Ke posisi ${i + 1}`);
             d.addEventListener('click', () =>
               track.scrollTo({ left: i * step(), behavior: 'smooth' }),
@@ -362,22 +360,52 @@ if (Astro.url.searchParams.has('gagal')) {
       }
     </script>
 
-    <section class="section section--surface" id="proyek">
-      <div class="wrap wrap--wide" data-carousel>
+    <script>
+      // Modal peta: iframe baru diset src saat pertama dibuka, agar peta tidak dimuat di awal.
+      const mapModal = document.querySelector<HTMLElement>('[data-map-modal]');
+      const mapFrame = mapModal?.querySelector<HTMLIFrameElement>('[data-map-frame]');
+
+      const openMap = () => {
+        if (!mapModal || !mapFrame) return;
+        if (!mapFrame.src) mapFrame.src = mapFrame.dataset.src ?? '';
+        mapModal.hidden = false;
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeMap = () => {
+        if (!mapModal) return;
+        mapModal.hidden = true;
+        document.body.style.overflow = '';
+      };
+
+      for (const trigger of document.querySelectorAll('[data-open-map]')) {
+        trigger.addEventListener('click', openMap);
+      }
+      for (const closer of mapModal?.querySelectorAll('[data-map-close]') ?? []) {
+        closer.addEventListener('click', closeMap);
+      }
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mapModal?.hidden) closeMap();
+      });
+    </script>
+
+    <section class="section" id="proyek">
+      <div class="wrap wrap--wide">
         <div class="pr-head">
-          <div>
-            <span class="eyebrow">Portofolio Proyek</span>
-            <h2>Portofolio Proyek</h2>
-          </div>
-          <div class="pr-head__right">
+          <h2>Portofolio Proyek</h2>
+        </div>
+
+        <div class="pr-group" data-carousel>
+          <div class="pr-group__head">
+            <h3>IPA Struktur Baja</h3>
             <div class="ws-arrows">
-              <button class="ws-arrow" type="button" data-prev aria-label="Geser proyek ke kiri">
+              <button class="ws-arrow" type="button" data-prev aria-label="Geser proyek IPA ke kiri">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M19 12H5"></path>
                   <path d="m12 19-7-7 7-7"></path>
                 </svg>
               </button>
-              <button class="ws-arrow" type="button" data-next aria-label="Geser proyek ke kanan">
+              <button class="ws-arrow" type="button" data-next aria-label="Geser proyek IPA ke kanan">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M5 12h14"></path>
                   <path d="m12 5 7 7-7 7"></path>
@@ -385,149 +413,38 @@ if (Astro.url.searchParams.has('gagal')) {
               </button>
             </div>
           </div>
+
+          <ul class="pr-track" data-track>
+            {projects.filter((p) => p.tag === 'IPA Baja').map((p) => <ProjectCard p={p} />)}
+          </ul>
+
+          <div class="car-dots" data-dots aria-label="Posisi proyek IPA"></div>
         </div>
 
-        <ul class="pr-track" data-track>
-          {projects.map((p) => (
-            <li class="pr-card">
-              {typeof p.image === 'string' ? (
-                <img src={p.image} alt={p.alt} width="640" height="480" loading="lazy" />
-              ) : (
-                <Image src={p.image} alt={p.alt} width={640} format="webp" quality={80} loading="lazy" />
-              )}
-              <span class="pr-card__tag">{p.tag}</span>
-              <div class="pr-card__info">
-                <h3>{p.title}</h3>
-                {(p.location || p.spec) && (
-                  <p class="pr-card__meta">
-                    {p.location && (
-                      <span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-                          <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                        {p.location}
-                      </span>
-                    )}
-                    {p.spec && (
-                      <span>
-                        {p.specIcon === 'pipe' ? (
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M3 13h18"></path>
-                            <path d="M3 11v4M6 11v4M18 11v4M21 11v4"></path>
-                            <path d="M12 13V9"></path>
-                            <circle cx="12" cy="7" r="1.6"></circle>
-                          </svg>
-                        ) : (
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M12 3c3.5 4.6 6 8 6 11a6 6 0 0 1-12 0c0-3 2.5-6.4 6-11Z"></path>
-                          </svg>
-                        )}
-                        {p.spec}
-                      </span>
-                    )}
-                  </p>
-                )}
-              </div>
-            </li>
-          ))}
-        </ul>
-
-        <div class="car-dots" data-dots aria-label="Posisi proyek"></div>
-      </div>
-    </section>
-
-    <section class="section" id="kontak">
-      <div class="wrap">
-        <span class="eyebrow">Kontak</span>
-        <h2>Ceritakan kebutuhan instalasi Anda</h2>
-        <p class="lead" style="margin-bottom: 2.5rem;">
-          Isi formulir di bawah, kami akan menghubungi Anda untuk membahas kebutuhan teknis.
-        </p>
-
-        {status === 'ok' && (
-          <div class="alert alert--ok" role="status" aria-live="polite">
-            Terima kasih. Pesan Anda sudah kami terima dan akan segera ditindaklanjuti.
+        <div class="pr-group" data-carousel>
+          <div class="pr-group__head">
+            <h3>General</h3>
+            <div class="ws-arrows">
+              <button class="ws-arrow" type="button" data-prev aria-label="Geser proyek general ke kiri">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M19 12H5"></path>
+                  <path d="m12 19-7-7 7-7"></path>
+                </svg>
+              </button>
+              <button class="ws-arrow" type="button" data-next aria-label="Geser proyek general ke kanan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
           </div>
-        )}
-        {status === 'error' && (
-          <div class="alert alert--error" role="alert">{errorMessage}</div>
-        )}
 
-        <div class="contact-grid">
-          <form class="form" method="post" action="#kontak" novalidate>
-            <div class="field">
-              <label for="name">Nama <span aria-hidden="true">*</span></label>
-              <input id="name" name="name" type="text" required maxlength="100" autocomplete="name" />
-            </div>
+          <ul class="pr-track" data-track>
+            {projects.filter((p) => p.tag !== 'IPA Baja').map((p) => <ProjectCard p={p} />)}
+          </ul>
 
-            <div class="field">
-              <label for="company">Perusahaan</label>
-              <input id="company" name="company" type="text" maxlength="150" autocomplete="organization" />
-            </div>
-
-            <div class="field">
-              <label for="email">Email <span aria-hidden="true">*</span></label>
-              <input id="email" name="email" type="email" required maxlength="254" autocomplete="email" />
-            </div>
-
-            <div class="field">
-              <label for="phone">Telepon / WhatsApp</label>
-              <input id="phone" name="phone" type="tel" maxlength="40" autocomplete="tel" />
-            </div>
-
-            <div class="field field--full">
-              <label for="need">Kebutuhan</label>
-              <select id="need" name="need">
-                <option value="">Pilih kebutuhan</option>
-                {needs.map((n) => <option value={n}>{n}</option>)}
-              </select>
-            </div>
-
-            <div class="field field--full">
-              <label for="message">Pesan <span aria-hidden="true">*</span></label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                minlength="10"
-                maxlength="5000"
-                placeholder="Contoh: butuh WTP kapasitas 20 liter/detik dengan sumber air sungai, lokasi di Jawa Barat."
-              ></textarea>
-              <span class="field__hint">Sertakan kapasitas, sumber air, dan lokasi bila sudah ada.</span>
-            </div>
-
-            <div class="hp" aria-hidden="true">
-              <label for="website">Website</label>
-              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
-            </div>
-
-            <div class="form__foot">
-              <p>
-                Data yang Anda kirim hanya digunakan untuk menindaklanjuti permintaan ini.
-              </p>
-              <button class="btn btn--primary" type="submit">Kirim pesan</button>
-            </div>
-          </form>
-
-          <dl class="contact-info">
-            <div class="contact-info__item">
-              <dt>Email</dt>
-              <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
-            </div>
-            <div class="contact-info__item">
-              <dt>Telepon</dt>
-              <dd><a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a></dd>
-            </div>
-            <div class="contact-info__item">
-              <dt>Alamat</dt>
-              <dd>{site.address}</dd>
-            </div>
-            <div class="contact-info__item">
-              <dt>Jam kerja</dt>
-              <dd>{site.hours}</dd>
-            </div>
-          </dl>
+          <div class="car-dots" data-dots aria-label="Posisi proyek general"></div>
         </div>
       </div>
     </section>

@@ -41,19 +41,23 @@ export const site = {
   tagline: 'Water Treatment Plant Specialist',
   description:
     'Perencanaan, konstruksi, dan pemeliharaan instalasi pengolahan air bersih dan air limbah untuk kebutuhan industri, komersial, dan kawasan.',
-  // TODO: ganti dengan data resmi sebelum deploy
-  email: 'info@tcpatriot.co.id',
-  phone: '+62 812 0000 0000',
-  address: 'Jakarta, Indonesia',
-  hours: 'Senin–Jumat, 08.00–17.00 WIB',
+  email: 'triciptapatriot@ymail.com',
+  phone: '021-28566921',
+  address: 'Purwakarta, Jawa Barat, Indonesia',
 };
+
+// TODO: ganti '#' dengan URL resmi akun sebelum deploy
+export const socials = [
+  { label: 'LinkedIn', href: '#', icon: 'linkedin' },
+  { label: 'Instagram', href: '#', icon: 'instagram' },
+  { label: 'YouTube', href: '#', icon: 'youtube' },
+];
 
 export const nav = [
   { href: '#beranda', label: 'Beranda' },
   { href: '#ipa', label: 'IPA Struktur Baja' },
   { href: '#workshop', label: 'Workshop' },
   { href: '#proyek', label: 'Proyek' },
-  { href: '#kontak', label: 'Kontak' },
 ];
 
 // Semua foto galeri workshop sudah foto asli.
@@ -62,7 +66,7 @@ export const workshop = {
   locationLabel: 'Lokasi Workshop',
   eyebrow: 'Darangdan, Purwakarta, Jawa Barat',
   heading: 'PT. Tri Cipta Patriot Workshop Instalasi Pengolahan Air Struktur Baja',
-  desc: 'Workshop kami dilengkapi dengan fasilitas produksi modern untuk mendukung pembuatan instalasi pengolahan air berbasis struktur baja dengan kualitas tinggi, presisi, dan sesuai standar.',
+  desc: 'Workshop Tri Cipta Patriot dilengkapi dengan fasilitas produksi modern untuk mendukung pembuatan instalasi pengolahan air berbasis struktur baja dengan kualitas tinggi, presisi, dan sesuai standar.',
   sub: 'Didukung Fasilitas Workshop Lengkap dan Tenaga Ahli Berpengalaman',
   slides: [
     { image: workshop1, alt: 'Area workshop PT. Tri Cipta Patriot' },
@@ -243,14 +247,6 @@ export const projects = [
     image: drainaseMekarsari,
     alt: 'Penataan Drainase Inlet Kali Cipinang RW.13 Kel. Mekarsari di Jawa Barat',
   },
-];
-
-export const needs = [
-  'Water Treatment Plant (WTP)',
-  'Wastewater Treatment (STP/WWTP)',
-  'Reverse Osmosis',
-  'Operasi & Pemeliharaan',
-  'Konsultasi / lain-lain',
 ];
 
 export const ipaSizes = [

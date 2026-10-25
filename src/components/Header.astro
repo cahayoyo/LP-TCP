@@ -157,3 +157,11 @@ import { nav } from '../data/site';
   for (const section of sections) observer.observe(section);
   if (sections[0]) setActive(`#${sections[0].id}`);
 </script>
+
+<script>
+  // Menu seluler: ketuk di luar panel juga menutup, bukan hanya toggle burger.
+  const mobileMenu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+  document.addEventListener('click', (e) => {
+    if (mobileMenu?.open && !mobileMenu.contains(e.target as Node)) mobileMenu.open = false;
+  });
+</script>
