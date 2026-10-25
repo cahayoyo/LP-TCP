@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '@fontsource-variable/inter';
 import { site } from '../data/site';
+import logo from '../assets/logo-navbar.png';
 
 interface Props {
   title?: string;
@@ -10,6 +11,33 @@ interface Props {
 
 const { title = site.title, description = site.description } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const homeUrl = new URL('/', Astro.site).href;
+const organizationId = `${homeUrl}#organization`;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: site.name,
+      alternateName: site.short,
+      url: homeUrl,
+      logo: new URL(logo.src, homeUrl).href,
+      description: site.description,
+      email: site.email,
+      telephone: site.phone.replace(/^0/, '+62').replace(/[^+\d]/g, ''),
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${homeUrl}#website`,
+      name: site.name,
+      alternateName: site.short,
+      url: homeUrl,
+      inLanguage: 'id-ID',
+      publisher: { '@id': organizationId },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -31,6 +59,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
