@@ -762,7 +762,7 @@ img {
 
 .pr-card__meta {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   margin: 0;
   font-size: 0.8rem;
@@ -770,17 +770,27 @@ img {
   color: #dbe9f6;
 }
 
-.pr-card__meta span {
+.pr-card__meta > span {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   white-space: nowrap;
+  min-width: 0;
+  overflow: hidden;
 }
 
-.pr-card__meta span + span {
+/* teks lokasi menyusut dengan ellipsis agar meta selalu 1 baris */
+.pr-card__meta > span > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pr-card__meta > span + span {
   border-left: 1px solid rgba(255, 255, 255, 0.35);
   padding-left: 0.6rem;
   margin-left: 0.55rem;
+  flex: none;
 }
 
 .pr-card__meta svg {
@@ -788,6 +798,21 @@ img {
   height: 14px;
   color: #9fd1f5;
   flex: none;
+}
+
+/* mobile: lokasi & spec selalu 2 baris agar semua card seragam */
+@media (max-width: 991px) {
+  .pr-card__meta {
+    flex-direction: column;
+    align-items: stretch;
+    row-gap: 0.3rem;
+  }
+
+  .pr-card__meta > span + span {
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 991px) {

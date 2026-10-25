@@ -110,7 +110,7 @@ export const projects = [
   {
     tag: 'IPA Baja',
     title: 'Rehabilitasi IPA Baja SPAM IKK Bumiarum',
-    location: 'Kabupaten Pringsewu, Lampung',
+    location: 'Pringsewu, Lampung',
     spec: '3×25 LPD',
     specIcon: 'droplet',
     image: bumiarum,
@@ -119,7 +119,7 @@ export const projects = [
   {
     tag: 'IPA Baja',
     title: 'Peningkatan IPA Baja SPAM IKK Sungai Bengkal',
-    location: 'Kabupaten Tebo, Jambi',
+    location: 'Tebo, Jambi',
     spec: '30 LPD',
     specIcon: 'droplet',
     image: sungaiBengkal,
@@ -146,7 +146,7 @@ export const projects = [
   {
     tag: 'IPA Baja',
     title: 'Pembangunan IPA Baja SPAM IKK Tondano',
-    location: 'Kabupaten Minahasa, Sulawesi Utara',
+    location: 'Minahasa, Sulawesi Utara',
     spec: '20 LPD',
     specIcon: 'droplet',
     image: tondano,
