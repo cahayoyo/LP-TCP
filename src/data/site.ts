@@ -60,10 +60,11 @@ import packing from '../assets/packing.png';
 
 export const site = {
   name: 'PT. Tri Cipta Patriot',
+  title: 'Kontraktor IPA Baja | PT. Tri Cipta Patriot',
   short: 'Tri Cipta Patriot',
   tagline: 'Water Treatment Plant Specialist',
   description:
-    'Perencanaan, konstruksi, dan pemeliharaan instalasi pengolahan air bersih dan air limbah untuk kebutuhan industri, komersial, dan kawasan.',
+    'PT. Tri Cipta Patriot melayani perencanaan, fabrikasi, pembangunan, dan pemeliharaan instalasi pengolahan air (IPA) baja kapasitas 10–50 liter/detik.',
   email: 'triciptapatriot@ymail.com',
   phone: '021-28566921',
   address: 'Purwakarta, Jawa Barat, Indonesia',
