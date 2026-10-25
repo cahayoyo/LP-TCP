@@ -1,0 +1,44 @@
+name: Build & Push Image
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # GHCR mewajibkan path image lowercase; nama repo "LP-TCP" mengandung huruf besar.
+      - name: Compute lowercase image name
+        id: img
+        run: echo "image=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64
+          tags: |
+            ${{ steps.img.outputs.image }}:latest
+            ${{ steps.img.outputs.image }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # URL webhook redeploy diisi setelah aplikasi dibuat di Dokploy (repo secret: DOKPLOY_WEBHOOK_URL).
+      - name: Trigger Dokploy redeploy
+        if: ${{ secrets.DOKPLOY_WEBHOOK_URL != '' }}
+        run: curl -fsS --max-time 30 -X POST "${{ secrets.DOKPLOY_WEBHOOK_URL }}"
