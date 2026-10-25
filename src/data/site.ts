@@ -25,6 +25,8 @@ import filterCiburial from '../assets/filter-ciburial.png';
 import waterTankSawangan from '../assets/watertank-sawangan.png';
 import pipaGiDepok from '../assets/pipa-gi-depok.png';
 import drainaseMekarsari from '../assets/drainase-mekarsari.png';
+import pagarTppas from '../assets/pagar-tppas.png';
+import ipalBandung from '../assets/ipal-bandung.png';
 import sandblasting from '../assets/sandblasting1.png';
 import unloading from '../assets/unloading.png';
 import pengecatan from '../assets/pengecatan.png';
@@ -96,7 +98,7 @@ export const workshop = {
   ],
 };
 
-// Semua 17 foto proyek sudah foto asli.
+// Semua foto proyek sudah foto asli.
 export const projects = [
   {
     tag: 'IPA Baja',
@@ -169,6 +171,14 @@ export const projects = [
     specIcon: 'droplet',
     image: selatNasik,
     alt: 'Pembangunan IPA Baja SPAM IKK Selat Nasik di Bangka Belitung',
+  },
+  {
+    tag: 'IPAL',
+    title: 'Rehabilitasi dan Pengembangan IPAL RSUD Al Ihsan',
+    location: 'Bandung, Jawa Barat',
+    spec: '',
+    image: ipalBandung,
+    alt: 'Rehabilitasi dan Pengembangan IPAL RSUD Al Ihsan di Bandung, Jawa Barat',
   },
   {
     tag: 'Pipa Distribusi',
@@ -246,6 +256,14 @@ export const projects = [
     spec: '',
     image: drainaseMekarsari,
     alt: 'Penataan Drainase Inlet Kali Cipinang RW.13 Kel. Mekarsari di Jawa Barat',
+  },
+  {
+    tag: 'Pagar TPPAS',
+    title: 'Pengadaan dan Pemasangan Pagar Lanjutan TPPAS Regional Nambo Ruas A',
+    location: 'Nambo, Jawa Barat',
+    spec: '',
+    image: pagarTppas,
+    alt: 'Pengadaan dan Pemasangan Pagar Lanjutan TPPAS Regional Nambo Ruas A di Nambo, Jawa Barat',
   },
 ];
 
