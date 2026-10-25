@@ -1439,7 +1439,8 @@ img {
     gap: 2.75rem;
   }
 
-  .pr-head h2 {
+  .pr-head h2,
+  .cl-head h2 {
     font-size: min(46px, 6.5vw);
   }
 
@@ -1453,7 +1454,8 @@ img {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .pr-head h2 {
+  .pr-head h2,
+  .cl-head h2 {
     font-size: clamp(23px, 7vw, 32px);
   }
 
@@ -1812,5 +1814,185 @@ img {
   .map-modal__close {
     top: 0.5rem;
     right: 0.5rem;
+  }
+}
+
+/* Pengguna jasa — kartu instansi carousel */
+.cl-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.6rem;
+}
+
+.cl-head h2 {
+  margin: 0;
+  font-size: min(72px, 5.5vw);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+/* siluet peta Indonesia di kanan header, <img> masuk saat aset ada */
+.cl-map {
+  flex: none;
+  width: min(560px, 44vw);
+  aspect-ratio: 2 / 1;
+}
+
+.cl-map svg {
+  width: 100%;
+  height: 100%;
+  color: #c9def0;
+}
+
+.cl-carousel {
+  position: relative;
+}
+
+.cl-track {
+  list-style: none;
+  margin: 0;
+  padding: 0 2px 6px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 4rem) / 5);
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.cl-track.is-drag {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  user-select: none;
+}
+
+.cl-track::-webkit-scrollbar {
+  display: none;
+}
+
+.cl-card {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 1.2rem 0.8rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(13, 31, 45, 0.06);
+  text-align: center;
+}
+
+.cl-card__logo {
+  display: grid;
+  place-items: center;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  /* placeholder: ganti dengan <Image> saat logo asli ada */
+  background: #e3eefb;
+  color: #1d7fe0;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+/* logo asli: tile transparan, gambar pas di dalam tile */
+.cl-card__logo--img {
+  background: transparent;
+}
+
+/* absolute: % tinggi resolve terhadap tile, tidak meluber ke teks */
+.cl-card__logo--img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cl-card h3 {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--ink);
+  max-width: 13ch;
+}
+
+.cl-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  color: #1d7fe0;
+  box-shadow: 0 6px 18px rgba(13, 31, 45, 0.18);
+  cursor: pointer;
+}
+
+.cl-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.cl-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.cl-arrow--prev {
+  left: -16px;
+}
+
+.cl-arrow--next {
+  right: -16px;
+}
+
+@media (max-width: 991px) {
+  .cl-track {
+    grid-auto-columns: calc((100% - 2rem) / 3);
+  }
+}
+
+@media (max-width: 640px) {
+  .cl-track {
+    grid-auto-columns: calc((100% - 1rem) / 3);
+  }
+
+  .cl-card__logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+  }
+
+  .cl-card h3 {
+    font-size: 0.78rem;
+  }
+
+  .cl-map {
+    width: min(140px, 36vw);
+  }
+
+  .cl-arrow--prev {
+    left: 6px;
+  }
+
+  .cl-arrow--next {
+    right: 6px;
   }
 }

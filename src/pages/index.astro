@@ -4,7 +4,9 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { site, workshop, projects, ipaSizes } from '../data/site';
+import ClientCard from '../components/ClientCard.astro';
+import { site, workshop, projects, ipaSizes, clients } from '../data/site';
+import MapIndonesia from '../components/MapIndonesia.astro';
 import heroPhoto from '../assets/ipa-1.png';
 ---
 
@@ -445,6 +447,34 @@ import heroPhoto from '../assets/ipa-1.png';
           </ul>
 
           <div class="car-dots" data-dots aria-label="Posisi proyek general"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--surface" id="pengguna-jasa">
+      <div class="wrap wrap--wide">
+        <div class="cl-head">
+          <h2>Pengguna Jasa</h2>
+          <div class="cl-map">
+            <MapIndonesia class="cl-map__svg" />
+          </div>
+        </div>
+
+        <div class="cl-carousel" data-carousel>
+          <ul class="cl-track" data-track>
+            {clients.map((c) => <ClientCard c={c} />)}
+          </ul>
+          <button class="cl-arrow cl-arrow--prev" type="button" data-prev aria-label="Geser instansi ke kiri">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m15 19-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button class="cl-arrow cl-arrow--next" type="button" data-next aria-label="Geser instansi ke kanan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m9 5 7 7-7 7"></path>
+            </svg>
+          </button>
+          <div class="car-dots" data-dots aria-label="Posisi instansi"></div>
         </div>
       </div>
     </section>

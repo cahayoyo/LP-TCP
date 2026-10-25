@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+// Kartu instansi pengguna jasa (compact: logo + nama).
+// Tanpa logo → placeholder huruf inisial; dengan logo → gambar asli.
+interface Props {
+  c: {
+    name: string;
+    logo?: ImageMetadata;
+  };
+}
+
+const { c } = Astro.props;
+---
+
+<li class="cl-card">
+  <span class:list={['cl-card__logo', { 'cl-card__logo--img': c.logo }]} aria-hidden="true">
+    {c.logo ? (
+      c.logo.format === 'svg' ? (
+        <img src={c.logo.src} alt="" loading="lazy" />
+      ) : (
+        <Image src={c.logo} alt="" width={128} fit="contain" format="webp" quality={85} loading="lazy" />
+      )
+    ) : (
+      c.name[0]
+    )}
+  </span>
+  <h3>{c.name}</h3>
+</li>

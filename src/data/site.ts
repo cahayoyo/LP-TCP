@@ -27,6 +27,27 @@ import pipaGiDepok from '../assets/pipa-gi-depok.png';
 import drainaseMekarsari from '../assets/drainase-mekarsari.png';
 import pagarTppas from '../assets/pagar-tppas.png';
 import ipalBandung from '../assets/ipal-bandung.png';
+import logoPupr from '../assets/pupr.png';
+import logoDepok from '../assets/pemerintah-depok.png';
+import logoJabar from '../assets/pemerintah-jawa-barat.webp';
+import logoJambi from '../assets/pemerintah-jambi.png';
+import logoSulut from '../assets/pemerintah-sulawesi-utara.svg';
+import logoSumut from '../assets/sumatera-utara.svg';
+import logoLampung from '../assets/lampung.png';
+import logoBabel from '../assets/bangka-belitung.svg';
+import logoRsudAlihsan from '../assets/rsud-alihsan.jpg';
+import logoTirtaAsasta from '../assets/tirta-asasta-depok.webp';
+import logoTirtaKahuripan from '../assets/tirta-kahuripan.jpeg';
+import logoTirtaBhagasi from '../assets/tirta-bhagasi.png';
+import logoPdamTangerang from '../assets/pdam-tanggerang.png';
+import logoTirtaPakuan from '../assets/tirta-pakuan.png';
+import logoTirtaWening from '../assets/tirta-wening.jpg';
+import logoTirtaRangga from '../assets/tirta-rangga.jpg';
+import logoAetra from '../assets/aetra.png';
+import logoHero from '../assets/hero.png';
+import logoSriPertiwi from '../assets/sri-pertiwi-sejati.jpg';
+import logoAlindatama from '../assets/alindatama.png';
+import logoGrandCikarang from '../assets/grand-cikarang.png';
 import sandblasting from '../assets/sandblasting1.png';
 import unloading from '../assets/unloading.png';
 import pengecatan from '../assets/pengecatan.png';
@@ -273,4 +294,29 @@ export const ipaSizes = [
   { capacity: 30, image: ipa30, alt: 'IPA struktur baja kapasitas 30 liter per detik' },
   { capacity: 40, image: ipa40, alt: 'IPA struktur baja kapasitas 40 liter per detik' },
   { capacity: 50, image: ipa50, alt: 'IPA struktur baja kapasitas 50 liter per detik' },
+];
+
+// Instansi pengguna jasa. Logo yang belum ada pakai placeholder inisial.
+export const clients = [
+  { name: 'Kementerian PUPR', logo: logoPupr },
+  { name: 'Pemerintah Kota Depok', logo: logoDepok },
+  { name: 'Pemerintah Jawa Barat', logo: logoJabar },
+  { name: 'Pemerintah Jambi', logo: logoJambi },
+  { name: 'Pemerintah Sulawesi Utara', logo: logoSulut },
+  { name: 'Pemerintah Sumatera Utara', logo: logoSumut },
+  { name: 'Pemerintah Lampung', logo: logoLampung },
+  { name: 'Pemerintah Bangka Belitung', logo: logoBabel },
+  { name: 'RSUD Al Ihsan', logo: logoRsudAlihsan },
+  { name: 'PDAM Tirta Asasta Depok', logo: logoTirtaAsasta },
+  { name: 'PDAM Tirta Kahuripan', logo: logoTirtaKahuripan },
+  { name: 'PDAM Tirta Bhagasi', logo: logoTirtaBhagasi },
+  { name: 'PDAM Kota Tangerang', logo: logoPdamTangerang },
+  { name: 'PDAM Tirta Pakuan', logo: logoTirtaPakuan },
+  { name: 'PDAM Tirta Wening', logo: logoTirtaWening },
+  { name: 'PDAM Tirta Rangga', logo: logoTirtaRangga },
+  { name: 'PT. AETRA Air Jakarta', logo: logoAetra },
+  { name: 'PT. HERO Supermarket, Tbk', logo: logoHero },
+  { name: 'PT. Sri Pertiwi Sejati', logo: logoSriPertiwi },
+  { name: 'PT. Alindatama Sakti BC', logo: logoAlindatama },
+  { name: 'Perumahan Grand Cikarang City', logo: logoGrandCikarang },
 ];
