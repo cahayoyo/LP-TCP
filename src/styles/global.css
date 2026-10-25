@@ -1190,6 +1190,104 @@ img {
   height: 60%;
 }
 
+/* Ringkasan regulasi teknis yang melandasi spesifikasi IPA baja. */
+.regulation-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: clamp(96px, 9vw, 140px) 2px minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.4rem, 2.5vw, 2.8rem);
+  min-height: 178px;
+  margin-top: clamp(0.75rem, 1.2vw, 1.15rem);
+  padding: clamp(1.3rem, 2vw, 2rem) clamp(1.6rem, 3.2vw, 3.5rem);
+  border: 2px solid #1494e6;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 5% 55%, #d7ecff 0, #d7ecff 8%, transparent 22%),
+    linear-gradient(105deg, #eef8ff 0%, #fff 56%, #dcedff 100%);
+  box-shadow: inset 0 1px 0 #ffffffcc;
+  color: var(--standard-blue);
+}
+
+.regulation-panel__icon {
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  padding: 18%;
+  border-radius: 26%;
+  background: linear-gradient(145deg, #0874ed, #033baf);
+  box-shadow: 0 8px 20px #075bc02b;
+}
+
+.regulation-panel__icon svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 3px 3px #00256e38);
+}
+
+.regulation-panel__divider {
+  z-index: 1;
+  width: 1px;
+  height: 100%;
+  max-height: 140px;
+  background: #5fa7e8;
+}
+
+.regulation-panel__copy {
+  z-index: 1;
+  min-width: 0;
+}
+
+.regulation-panel__title {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.4rem, 2.5vw, 3rem);
+  margin-bottom: 0.55rem;
+}
+
+.regulation-panel__title h3 {
+  flex: none;
+  margin: 0;
+  color: var(--standard-ink);
+  font-size: clamp(1.55rem, 2.35vw, 2.55rem);
+  font-weight: 850;
+  line-height: 1.15;
+}
+
+.regulation-panel__title > span {
+  width: clamp(120px, 19vw, 280px);
+  height: 2px;
+  background: #74b8f3;
+}
+
+.regulation-panel__copy ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--standard-body);
+  font-size: clamp(0.86rem, 1.12vw, 1.15rem);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.regulation-panel__watermark {
+  position: absolute;
+  z-index: 0;
+  top: -18%;
+  right: -1%;
+  width: min(30%, 430px);
+  height: 140%;
+  color: #74b8f3;
+  opacity: 0.13;
+  stroke: currentColor;
+  stroke-width: 18;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 @media (max-width: 991px) {
   .sni-grid {
     grid-template-columns: 1fr;
@@ -1206,6 +1304,33 @@ img {
 
   .sni-card__copy p {
     font-size: 0.9rem;
+  }
+
+  .regulation-panel {
+    grid-template-columns: 88px 1px minmax(0, 1fr);
+    gap: 1.35rem;
+    min-height: 150px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .regulation-panel__divider {
+    max-height: 106px;
+  }
+
+  .regulation-panel__title {
+    gap: 1.25rem;
+  }
+
+  .regulation-panel__title h3 {
+    font-size: clamp(1.25rem, 3.2vw, 1.75rem);
+  }
+
+  .regulation-panel__title > span {
+    width: clamp(70px, 14vw, 130px);
+  }
+
+  .regulation-panel__copy ul {
+    font-size: clamp(0.72rem, 1.55vw, 0.88rem);
   }
 }
 
@@ -1283,6 +1408,59 @@ img {
   .sni-card__copy p {
     font-size: clamp(0.65rem, 2.7vw, 0.75rem);
     line-height: 1.2;
+  }
+
+  .regulation-panel {
+    grid-template-columns: clamp(52px, 15vw, 64px) minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+    min-height: 0;
+    margin: 14px 0 0;
+    padding: 18px 16px 20px;
+    border-radius: 18px;
+  }
+
+  .regulation-panel__icon {
+    align-self: center;
+    padding: 15%;
+    border-radius: 23%;
+  }
+
+  .regulation-panel__divider {
+    display: none;
+  }
+
+  .regulation-panel__title {
+    margin-bottom: 8px;
+  }
+
+  .regulation-panel__title h3 {
+    font-size: clamp(0.95rem, 4.2vw, 1.08rem);
+    line-height: 1.25;
+  }
+
+  .regulation-panel__title > span {
+    display: none;
+  }
+
+  .regulation-panel__copy ul {
+    list-style: disc;
+    padding-left: 1.05rem;
+    font-size: clamp(0.72rem, 3vw, 0.82rem);
+    font-weight: 450;
+    line-height: 1.48;
+  }
+
+  .regulation-panel__copy li + li {
+    margin-top: 5px;
+  }
+
+  .regulation-panel__copy li::marker {
+    color: var(--standard-blue);
+  }
+
+  .regulation-panel__watermark {
+    display: none;
   }
 }
 

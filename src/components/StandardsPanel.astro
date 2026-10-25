@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import { ipaStandards } from '../data/site';
-import sniMark from '../assets/sni-mark.svg';
+import { ipaRegulation, ipaStandards } from '../data/site';
+import sniMark from '../assets/logo-sni.png';
 import waterBackground from '../assets/sni-water.webp';
 ---
 
@@ -63,4 +63,34 @@ import waterBackground from '../assets/sni-water.webp';
       ))}
     </ul>
   </div>
+</section>
+
+<section class="regulation-panel" aria-labelledby="regulation-title">
+  <span class="regulation-panel__icon" aria-hidden="true">
+    <svg viewBox="0 0 96 96">
+      <path fill="#fff" d="M30 23h36a7 7 0 0 1 7 7v46a7 7 0 0 1-7 7H30a7 7 0 0 1-7-7V30a7 7 0 0 1 7-7Z" />
+      <path fill="#fff" d="M38 20a10 10 0 0 1 20 0h7v15H31V20h7Z" />
+      <circle cx="48" cy="20" r="4" fill="#0963df" />
+      <path fill="none" stroke="#0963df" stroke-width="6" stroke-linecap="round" d="M36 46h24M36 59h24M36 72h15" />
+      <circle cx="70" cy="71" r="16" fill="#fff" stroke="#0963df" stroke-width="5" />
+      <path fill="none" stroke="#0963df" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="m62 71 6 6 11-13" />
+    </svg>
+  </span>
+  <span class="regulation-panel__divider" aria-hidden="true"></span>
+  <div class="regulation-panel__copy">
+    <div class="regulation-panel__title">
+      <h3 id="regulation-title">{ipaRegulation.heading}</h3>
+      <span aria-hidden="true"></span>
+    </div>
+    <ul>
+      {ipaRegulation.lines.map((line) => <li>{line}</li>)}
+    </ul>
+  </div>
+  <svg class="regulation-panel__watermark" viewBox="0 0 320 220" fill="none" aria-hidden="true">
+    <path d="M58 29 29 46a27 27 0 0 0-10 37l73 126M151 24l-21 12a28 28 0 0 0-10 38l77 133" />
+    <g transform="rotate(23 245 107)">
+      <rect x="188" y="31" width="108" height="151" rx="18" />
+      <path d="M218 60h49M218 83h49M218 106h39" />
+    </g>
+  </svg>
 </section>

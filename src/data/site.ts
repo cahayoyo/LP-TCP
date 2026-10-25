@@ -323,6 +323,15 @@ export const ipaStandards = {
   ],
 };
 
+export const ipaRegulation = {
+  heading: 'Spesifikasi Sesuai Regulasi',
+  lines: [
+    'Spesifikasi sesuai Surat Edaran Direktur Jenderal Cipta Karya Nomor 11/SE/DC/2021 Tahun 2021',
+    'Tentang Perubahan Surat Edaran Direktur Jenderal Cipta Karya Nomor 08/SE/DC/2020 Tahun 2020',
+    'Tentang Standar Teknis Modul Instalasi Pengolahan Air Minum Struktur Baja di Lingkungan Direktorat Jenderal Cipta Karya.',
+  ],
+};
+
 // Instansi pengguna jasa. Logo yang belum ada pakai placeholder inisial.
 export const clients = [
   { name: 'Kementerian PUPR', logo: logoPupr },
