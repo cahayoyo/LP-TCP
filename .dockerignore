@@ -2,6 +2,7 @@ node_modules
 dist
 .astro
 .git
+assets-in
 .env
 .env.*
 !.env.example
