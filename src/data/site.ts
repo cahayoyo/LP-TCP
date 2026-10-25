@@ -31,10 +31,11 @@ import logoPupr from '../assets/pupr.png';
 import logoDepok from '../assets/pemerintah-depok.png';
 import logoJabar from '../assets/pemerintah-jawa-barat.webp';
 import logoJambi from '../assets/pemerintah-jambi.png';
-import logoSulut from '../assets/pemerintah-sulawesi-utara.svg';
-import logoSumut from '../assets/sumatera-utara.svg';
+// Logo provinsi di-raster jadi webp: sumber SVG aslinya ratusan KB untuk tampil 64px.
+import logoSulut from '../assets/pemerintah-sulawesi-utara.webp';
+import logoSumut from '../assets/sumatera-utara.webp';
 import logoLampung from '../assets/lampung.png';
-import logoBabel from '../assets/bangka-belitung.svg';
+import logoBabel from '../assets/bangka-belitung.webp';
 import logoRsudAlihsan from '../assets/rsud-alihsan.jpg';
 import logoTirtaAsasta from '../assets/tirta-asasta-depok.webp';
 import logoTirtaKahuripan from '../assets/tirta-kahuripan.jpeg';
