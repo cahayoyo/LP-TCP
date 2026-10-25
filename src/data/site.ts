@@ -298,6 +298,31 @@ export const ipaSizes = [
   { capacity: 50, image: ipa50, alt: 'IPA struktur baja kapasitas 50 liter per detik' },
 ];
 
+export const ipaStandards = {
+  eyebrow: 'Sesuai Dengan',
+  heading: 'Standar Nasional Indonesia',
+  abbreviation: '(SNI)',
+  description:
+    'IPA Struktur Baja Tri Cipta Patriot mengacu pada standar nasional Indonesia untuk memastikan kualitas, keamanan, dan keberlanjutan dalam penyediaan air bersih.',
+  items: [
+    {
+      code: 'SNI 6773 : 2008',
+      description: 'Spesifikasi Unit Paket Instalasi Pengolahan Air.',
+      icon: 'specification',
+    },
+    {
+      code: 'SNI 6774 : 2008',
+      description: 'Tata Cara Perencanaan Unit Paket Instalasi Pengolahan Air.',
+      icon: 'planning',
+    },
+    {
+      code: 'SNI 6775 : 2008',
+      description: 'Tata Cara Pengoperasian dan Pemeliharaan Unit Paket Instalasi Pengolahan Air.',
+      icon: 'maintenance',
+    },
+  ],
+};
+
 // Instansi pengguna jasa. Logo yang belum ada pakai placeholder inisial.
 export const clients = [
   { name: 'Kementerian PUPR', logo: logoPupr },

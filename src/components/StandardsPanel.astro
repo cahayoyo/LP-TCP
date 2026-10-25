@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import { ipaStandards } from '../data/site';
+import sniMark from '../assets/sni-mark.svg';
+import waterBackground from '../assets/sni-water.webp';
+---
+
+<section class="sni-panel" aria-labelledby="sni-title">
+  <Image
+    src={waterBackground}
+    alt=""
+    aria-hidden="true"
+    width={1700}
+    widths={[480, 800, 1200, 1700]}
+    sizes="(max-width: 1700px) 100vw, 1700px"
+    format="webp"
+    quality={65}
+    loading="lazy"
+    class="sni-panel__background"
+  />
+  <div class="sni-panel__content">
+    <div class="sni-panel__head">
+      <p class="sni-panel__eyebrow">{ipaStandards.eyebrow}</p>
+      <h3 id="sni-title">{ipaStandards.heading} <span>{ipaStandards.abbreviation}</span></h3>
+      <p class="sni-panel__description">{ipaStandards.description}</p>
+    </div>
+
+    <ul class="sni-grid">
+      {ipaStandards.items.map((standard) => (
+        <li class="sni-card">
+          <span class="sni-card__mark" aria-hidden="true">
+            <Image src={sniMark} alt="" width={72} height={72} loading="lazy" />
+          </span>
+          <div class="sni-card__copy">
+            <h4>{standard.code}</h4>
+            <p>{standard.description}</p>
+          </div>
+          <span class="sni-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              {standard.icon === 'specification' && (
+                <>
+                  <path d="M27 6H12a3 3 0 0 0-3 3v29a3 3 0 0 0 3 3h14M27 6v9h9l-9-9ZM36 15v9M16 14h5M16 22h10M16 29h5" />
+                  <circle cx="33" cy="34" r="9" />
+                  <path d="m29 34 3 3 5-6" />
+                </>
+              )}
+              {standard.icon === 'planning' && (
+                <>
+                  <path d="M14 12h25v28H14M9 7h5v33H9a4 4 0 0 1-4-4V11a4 4 0 0 1 4-4ZM9 32H5M20 19h13v14H20ZM24 19v7h9M20 38h13M25 15v4M29 33v3" />
+                </>
+              )}
+              {standard.icon === 'maintenance' && (
+                <>
+                  <path d="m20 7 1-4h6l1 4 4 2 4-1 3 5-3 3v5l3 3-3 5-4-1-4 2-1 4h-6l-1-4-4-2-4 1-3-5 3-3v-5l-3-3 3-5 4 1 4-2Z" />
+                  <circle cx="24" cy="18" r="6" />
+                  <path d="m34 29 3-2 4 3-1 3 2 3 3 1-1 5-4 1-2 3-5-2v-4l-2-3-3-1 1-4 5-3Z" />
+                  <circle cx="36" cy="36" r="3" />
+                </>
+              )}
+            </svg>
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

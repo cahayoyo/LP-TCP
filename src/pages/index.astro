@@ -5,6 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ClientCard from '../components/ClientCard.astro';
+import StandardsPanel from '../components/StandardsPanel.astro';
 import { site, workshop, projects, ipaSizes, clients } from '../data/site';
 import MapIndonesia from '../components/MapIndonesia.astro';
 import heroPhoto from '../assets/ipa-1.png';
@@ -136,6 +137,8 @@ export const prerender = true;
             </article>
           ))}
         </div>
+
+        <StandardsPanel />
       </div>
     </section>
 
