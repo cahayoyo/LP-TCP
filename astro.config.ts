@@ -13,6 +13,5 @@ export default defineConfig({
     host: true,
     port: Number(process.env.PORT) || 4321,
   },
-  // TODO: isi setelah domain dibeli, dipakai untuk canonical & sitemap nanti.
-  // site: 'https://domain-anda.co.id',
+  site: 'https://triciptapatriot.com',
 });

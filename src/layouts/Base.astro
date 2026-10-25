@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { title = site.title, description = site.description } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -29,6 +30,7 @@ const { title = site.title, description = site.description } = Astro.props;
     </script>
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl.href} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
