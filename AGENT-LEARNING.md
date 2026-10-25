@@ -108,3 +108,22 @@ URL/content-type means byte-level sniffing; mangle the bytes end-to-end.
 - A download-manager-safe response must contain no recognizable file magic —
   transform the bytes server-side and decode client-side when the format
   parser (like pdf.js) accepts raw data.
+
+## 3. `astro:assets` passes SVG sources through unoptimized
+
+**Symptoms.** Three client-logo SVGs (`sumatera-utara.svg` 456 KB,
+`pemerintah-sulawesi-utara.svg` 360 KB, `bangka-belitung.svg` 77 KB) were
+referenced directly as `<img src={logo.src}>`, each rendered at 64 px.
+
+**Root cause.** `astro:assets` does not transform SVG: `<Image>` on an SVG
+returns the original file URL, so an Illustrator export ships at full size and
+without `width`/`height` attributes (CLS).
+
+**Fix.** Pre-rasterize heavy SVG logos to webp once (sharp, 384 px wide), keep
+the source SVG in `src/assets` for future edits but stop importing it, and let
+`<Image width={128} format="webp">` emit the 128/256 px variants (~5–13 KB).
+Result: 890 KB → ~87 KB for the three logos.
+
+**General rule.** Any SVG destined for a small UI slot must be rasterized or
+optimized first; do not assume `<Image>` resizes it. Imported assets only ship
+when imported, so an unreferenced SVG costs nothing at runtime.

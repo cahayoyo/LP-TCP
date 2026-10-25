@@ -399,18 +399,23 @@ export const prerender = true;
       // Modal peta: iframe baru diset src saat pertama dibuka, agar peta tidak dimuat di awal.
       const mapModal = document.querySelector<HTMLElement>('[data-map-modal]');
       const mapFrame = mapModal?.querySelector<HTMLIFrameElement>('[data-map-frame]');
+      let lastTrigger: HTMLElement | null = null;
 
       const openMap = () => {
         if (!mapModal || !mapFrame) return;
         if (!mapFrame.src) mapFrame.src = mapFrame.dataset.src ?? '';
+        lastTrigger = document.activeElement as HTMLElement | null;
         mapModal.hidden = false;
         document.body.style.overflow = 'hidden';
+        // Fokus pindah ke tombol tutup supaya keyboard tidak tertinggal di belakang overlay.
+        mapModal.querySelector<HTMLElement>('.map-modal__close')?.focus();
       };
 
       const closeMap = () => {
         if (!mapModal) return;
         mapModal.hidden = true;
         document.body.style.overflow = '';
+        lastTrigger?.focus();
       };
 
       for (const trigger of document.querySelectorAll('[data-open-map]')) {

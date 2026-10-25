@@ -60,8 +60,7 @@ docker run -p 4321:4321 lp-tcp
 
 ## Before go-live
 
-- [ ] Set `site` in `astro.config.ts` (needed for canonical and OG tags)
-- [ ] Replace the `#` placeholder social URLs in `src/data/site.ts`
+- [ ] Replace the `#` placeholder social URLs in `src/data/site.ts` (or remove the social block in `Footer.astro`)
 
 ## Known limitations
 
