@@ -1,68 +1,54 @@
-# Landing Page — PT. Tri Cipta Patriot
+# Landing Page - PT. Tri Cipta Patriot
 
-Astro 7 on Node 24. Single landing page, no CMS, no database.
+Production landing page built for fast delivery of an image-heavy portfolio.
 
-Homepage HTML and responsive images are generated at build time to avoid image
-processing during page requests. The healthcheck and brochure API routes still
-run on the standalone Node server. Content changes require a rebuild.
+## Technology stack
 
-## Stack
-
-| Layer | Choice |
+| Layer | Technology |
 |---|---|
-| Framework | Astro 7.4, `output: 'server'`, `@astrojs/node` standalone |
-| Runtime | Node 24 LTS (`node:24-alpine`) |
-| Language | TypeScript (including `astro.config.ts`) |
-| Deploy | GitHub Actions → GHCR image → Dokploy (Docker source) |
+| Framework | Astro 7.4 |
+| Rendering | Prerendered homepage + standalone Node SSR endpoints |
+| Runtime | Node 24 LTS on Alpine Linux |
+| Language | TypeScript and Astro components |
+| Styling | Plain CSS with design tokens; no CSS framework |
+| Images | `astro:assets`, responsive `srcset`, WebP output |
+| Documents | PDF.js, dynamically imported on demand |
+| Container | Multi-stage Docker build, non-root runtime |
+| Delivery | GitHub Actions → GHCR → Dokploy → Cloudflare |
 
-## Structure
+## Technical highlights
 
-```
-astro.config.ts       config (TypeScript)
-src/data/site.ts      ALL hardcoded content: copy, services, projects, contact details
-src/pages/index.astro main page
-src/pages/api/health.ts  healthcheck for Dokploy
-src/layouts/          Base layout
-src/components/       Header, Footer, ProjectCard
-src/styles/global.css single stylesheet, no CSS framework
-Dockerfile            multi-stage build
-```
+- Homepage HTML and responsive images are generated at build time.
+- CSS is inlined to remove a render-blocking stylesheet request.
+- Hero media is prioritized; below-the-fold media is lazy-loaded.
+- Google Maps and PDF.js load only after user interaction.
+- No client UI framework or hydration runtime.
+- Canonical metadata, Open Graph, Twitter cards, sitemap, and linked
+  `Organization` + `WebSite` JSON-LD are included.
+- `/api/health` returns an uncached `200 ok` for Dokploy health checks.
 
-## Local development
+## Development
 
-```bash
-npm install
-npm run dev               # http://localhost:4321
-```
-
-## Deployment
-
-CI/CD chain: push to `main` → GitHub Actions builds the Docker image and
-pushes it to `ghcr.io/<owner>/<repo>:latest` → workflow calls the Dokploy
-redeploy webhook → the VPS pulls the new image and restarts the container.
-
-One-time setup on the VPS (Dokploy):
-
-1. Application → source **Docker** → image `ghcr.io/cahayoyo/lp-tcp:latest`.
-2. Registry credentials only if the repository is private (classic PAT with
-   `read:packages`).
-3. Healthcheck path `/api/health`, port `4321`.
-4. Domain under the Domains tab; Dokploy handles TLS (Let's Encrypt).
-5. Copy the **redeploy** webhook URL (Advanced → Webhook) into the GitHub
-   repo secret `DOKPLOY_WEBHOOK_URL`.
-
-Build and run locally:
+Requires Node `>=22.23.4`; Node 24 LTS matches production.
 
 ```bash
-docker build -t lp-tcp .
-docker run -p 4321:4321 lp-tcp
+npm ci
+npm run dev
 ```
 
-## Before go-live
+Production check:
 
-- [ ] Replace the `#` placeholder social URLs in `src/data/site.ts` (or remove the social block in `Footer.astro`)
+```bash
+npm run build
+npm start
+curl http://localhost:4321/api/health
+```
 
-## Known limitations
+## Release flow
 
-- The Docker image is roughly 436 MB because the runtime still needs the `astro` packages. It can be reduced later by bundling the server entry separately.
-- Content is hardcoded. Editing copy requires a redeploy; a CMS would be needed otherwise.
+| Branch | Behavior |
+|---|---|
+| `development` | Default work branch; no deployment |
+| `main` | Builds and pushes the Docker image, then triggers Dokploy |
+
+Production image: `ghcr.io/cahayoyo/lp-tcp:latest`.
