@@ -61,7 +61,7 @@ import packing from '../assets/packing.png';
 
 export const site = {
   name: 'PT. Tri Cipta Patriot',
-  title: 'Kontraktor IPA Baja | PT. Tri Cipta Patriot',
+  title: 'PT. Tri Cipta Patriot | Kontraktor IPA Baja',
   short: 'Tri Cipta Patriot',
   tagline: 'Water Treatment Plant Specialist',
   description:
